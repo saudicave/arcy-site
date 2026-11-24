@@ -1,7 +1,8 @@
 /* Shared behaviour for every page (MOTION.md has the rules). Deliberately little: the line drawing is the one
    signature motion; everything else is still.
    - theme toggle; the menu and the results folds open on wide screens
-   - a plate draws itself once when it enters the view (CSS draws; this adds `.in`); gallery plates are drawn complete
+   - a plate draws itself, and a work of ARCY's is revealed, once when it enters the view (CSS moves; this adds `.in`);
+     gallery plates are drawn complete
    - the regions gallery moves by drag, arrow keys and buttons (never by capturing the vertical wheel)
    With reduced motion, CSS shows every plate finished and nothing animates. */
 (() => {
@@ -22,7 +23,7 @@
 
   // Gallery plates are complete from the start: a region's name is never beside an empty or half-drawn frame.
   document.querySelectorAll('.rplate').forEach(p => p.classList.add('in'));
-  const plates = document.querySelectorAll('[data-plate]:not(.rplate)');
+  const plates = document.querySelectorAll('[data-plate]:not(.rplate),[data-reveal],.pull');
   if ('IntersectionObserver' in window && !reduce) {
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
     plates.forEach(p => io.observe(p));
