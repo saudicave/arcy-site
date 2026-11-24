@@ -1,47 +1,4 @@
 {
-  "about": "Real ARCY outputs shown on the site. Each was made by ARCY in a recorded session; nothing is retouched beyond cropping (crops remove a model's name, which the site never shows). Shown at the owner's request of 2026-11-24 ('use real ARCY outputs in colour'); `verdict` is the owner's per-file score out of 4 when he gives one (content/GUARD.md rule 4).",
-  "works": [
-    {
-      "id": "plan-review", "file": "assets/works/plan-review.jpg", "w": 1800, "h": 1592, "kind": "drawing",
-      "from": "real-user test 2026-11-24, session s05 (plan review), output o1-annotated-apartment-plan.pdf",
-      "verdict": null,
-      "title": { "ar": "مراجعة مخطط شقة", "en": "An apartment plan, reviewed" },
-      "caption": { "ar": "كل ملاحظة في موضعها على المسقط، ومعها بندها وصفحتها من الدليل.", "en": "Each finding sits where it applies on the plan, with its clause and page." }
-    },
-    {
-      "id": "studio-review", "file": "assets/works/studio-review.jpg", "w": 1020, "h": 900, "kind": "screen",
-      "from": "real-user test 2026-11-24, session s05, screen 25-end-canvas.png (cropped to the sidebar and the checklist)",
-      "verdict": null,
-      "title": { "ar": "الاستوديو أثناء المراجعة", "en": "The Studio, mid-review" },
-      "caption": { "ar": "لكل بند حكمه: متوافق، أو غير متوافق، أو يتعذّر الحكم، مع القيمة المقيسة والمطلوب.", "en": "Every clause gets a verdict: meets it, does not, or cannot be judged yet, with the measured value and what is required." }
-    },
-    {
-      "id": "canopy", "file": "assets/works/canopy.jpg", "w": 1800, "h": 1200, "kind": "picture",
-      "from": "paid run 4, j07 (a shade canopy pavilion in AlUla), refined-53.png",
-      "verdict": null,
-      "title": { "ar": "مظلّة في العلا", "en": "A shade canopy, AlUla" },
-      "caption": { "ar": "صورة رُسمت من نموذج المظلّة نفسه.", "en": "Pictured from the canopy's own model." }
-    },
-    {
-      "id": "museum", "file": "assets/works/museum.jpg", "w": 1200, "h": 800, "kind": "picture",
-      "from": "paid run 4, j06 (a museum of earth architecture, Diriyah), refined-44.png",
-      "verdict": null,
-      "title": { "ar": "متحف لعمارة الطين في الدرعية", "en": "A museum of earth architecture, Diriyah" },
-      "caption": { "ar": "صورة من نموذجه، بمدرّجاته على الوادي.", "en": "Pictured from its model, terraced toward the wadi." }
-    },
-    {
-      "id": "pavilion", "file": "assets/works/pavilion.jpg", "w": 1800, "h": 1200, "kind": "picture",
-      "from": "paid run 3, j04 (a free-form shell pavilion), refined-15.png",
-      "verdict": null,
-      "title": { "ar": "جناح بسقف سرجي", "en": "A saddle-roof pavilion" },
-      "caption": { "ar": "سطح حرّ، صُوِّر من نموذجه.", "en": "A free-form surface, pictured from its model." }
-    },
-    {
-      "id": "moodboard", "file": "assets/works/moodboard.jpg", "w": 1800, "h": 1177, "kind": "board",
-      "from": "real-user test 2026-11-24, session s09 (mood board), o18-alula-between-rocks-a3.pdf, cropped above its picture credit",
-      "verdict": null,
-      "title": { "ar": "لوحة إلهام: ظلّ بين الصخور", "en": "Mood board: shade between the rocks" },
-      "caption": { "ar": "لاستراحة في العلا. صورها مولَّدة للإلهام، وليست صوراً للموقع.", "en": "For a retreat in AlUla. Its pictures are generated for mood, not taken on site." }
-    }
-  ]
+  "about": "Real ARCY outputs shown on the site. Each was made by ARCY in a recorded session; nothing is retouched beyond cropping (crops remove a model's name, which the site never shows). Shown at the owner's request of 2026-11-24 ('use real ARCY outputs in colour'); `verdict` is the owner's per-file score out of 4 when he gives one (content/GUARD.md rule 4). Emptied 2026-11-24: the owner rejected all six as not striking; none is shown until he picks one by eye.",
+  "works": []
 }
