@@ -1,0 +1,529 @@
+{
+ "_about": "The 19 regional characters of Saudi architecture as drawn on the About and 404 pages. Read from ARCY-Official worker/agent/regulations/saudi-guidelines/ (params/*.json and dna/*.json, commit 15c611c), which extract the Architecture and Design Commission's published guidelines (architsaudi.dasc.gov.sa). Each value is taken inside the published range and cites its page ('G' guidelines, 'V' villa handbook, 'L' low-rise handbook, 'p' the parameter file's page). 'omit' lists what the data does not describe well enough to draw, so it is left out rather than invented. Band spacing marked illustrative is not given by the data. cite_ar and omit_ar are the same lines in Arabic, figures and page codes kept exactly. Page codes: G = the design guidelines, V = the villa handbook, L = the low-rise handbook, p = the page given in the parameter file.",
+ "source": "Architecture and Design Commission (DASC), Saudi architecture design guidelines, via ARCY-Official saudi-guidelines dataset",
+ "regions": [
+  {
+   "key": "northern_najdi",
+   "ar": "النجدية الشمالية",
+   "en": "Northern Najdi",
+   "row": 0,
+   "col": 2,
+   "window": {
+    "w": 0.8,
+    "h": 1.6,
+    "head": "flat",
+    "cite": "ratio 1:2-1:7 G34; size 0.7-2.2 m p9",
+    "cite_ar": "النسبة 1:2-1:7 G34؛ المقاس 0.7-2.2 م p9"
+   },
+   "parapet": {
+    "h": 1.2,
+    "type": "steps5",
+    "cite": "0.4-1.6 m p9; five-step crenellations G10/G21",
+    "cite_ar": "0.4-1.6 م p9؛ شُرَف من خمس درجات G10/G21"
+   },
+   "extras": [
+    {
+     "type": "triangles",
+     "cite": "triangular fenestrations V9",
+     "cite_ar": "فتحات مثلثة V9"
+    }
+   ],
+   "omit": [
+    "turmah (no drawn size)"
+   ],
+   "omit_ar": [
+    "الطرمة (لا مقاس مرسوم)"
+   ]
+  },
+  {
+   "key": "tabuk_coast",
+   "ar": "ساحل تبوك",
+   "en": "Tabuk Coast",
+   "row": 0,
+   "col": 0,
+   "window": {
+    "w": 0.9,
+    "h": 2.0,
+    "head": "vent",
+    "vent": [
+     0.4,
+     0.45
+    ],
+    "cite": "villa window 0.9 x 2 m and vent 0.4 x 0.45 m V10",
+    "cite_ar": "نافذة فيلا 0.9 × 2 م وفتحة تهوية 0.4 × 0.45 م V10"
+   },
+   "parapet": {
+    "h": 0.9,
+    "type": "flat",
+    "cite": "0.7-1.8 m p10; flat horizontal parapets G22",
+    "cite_ar": "0.7-1.8 م p10؛ دراوي أفقية مستوية G22"
+   },
+   "extras": [],
+   "omit": [
+    "roshan (higher-status buildings only)"
+   ],
+   "omit_ar": [
+    "الروشن (للمباني الأعلى مكانة فقط)"
+   ]
+  },
+  {
+   "key": "inner_madinah",
+   "ar": "المدينة المنورة",
+   "en": "Inner Madinah",
+   "row": 1,
+   "col": 0,
+   "window": null,
+   "roshan": {
+    "w": 1.9,
+    "h": 3.7,
+    "cite": "mashrabiya/roshan 1.9-3.7 m p10; roshans the most important feature V3",
+    "cite_ar": "المشربية/الروشن 1.9-3.7 م p10؛ الرواشين أهم عناصر الطابع V3"
+   },
+   "parapet": null,
+   "extras": [],
+   "omit": [
+    "window proportion (the books disagree, p26)",
+    "parapet height (tall, no number)"
+   ],
+   "omit_ar": [
+    "نسبة النافذة (الكتب مختلفة فيها، p26)",
+    "ارتفاع الدروة (عالية، بلا رقم)"
+   ]
+  },
+  {
+   "key": "madinah_rural",
+   "ar": "ريف المدينة المنورة",
+   "en": "Madinah Rural",
+   "row": 1,
+   "col": 1,
+   "window": {
+    "w": 1.1,
+    "h": 1.25,
+    "head": "lintel",
+    "cite": "traditional windows 1.0-1.2 x 1.1-1.4 m G31; expressed lintels G43",
+    "cite_ar": "نوافذ تقليدية 1.0-1.2 × 1.1-1.4 م G31؛ أعتاب ظاهرة G43"
+   },
+   "parapet": null,
+   "extras": [
+    {
+     "type": "triangle_vent",
+     "size": 0.6,
+     "cite": "0.6 m triangle vent V10",
+     "cite_ar": "فتحة تهوية مثلثة 0.6 م V10"
+    }
+   ],
+   "omit": [
+    "parapet (stepped roof profile, no height)"
+   ],
+   "omit_ar": [
+    "الدروة (سطح متدرج، بلا ارتفاع)"
+   ]
+  },
+  {
+   "key": "central_najdi",
+   "ar": "النجدية",
+   "en": "Central Najdi",
+   "row": 1,
+   "col": 2,
+   "window": {
+    "w": 0.8,
+    "h": 2.4,
+    "head": "flat",
+    "cite": "ratio 1:2-1:5 G38; size 0.8-2.4 m p9",
+    "cite_ar": "النسبة 1:2-1:5 G38؛ المقاس 0.8-2.4 م p9"
+   },
+   "parapet": {
+    "h": 0.8,
+    "type": "steps5",
+    "cite": "0.3-0.8 m p9; five-step crenellations G25",
+    "cite_ar": "0.3-0.8 م p9؛ شُرَف من خمس درجات G25"
+   },
+   "extras": [
+    {
+     "type": "triangles",
+     "cite": "triangular bands G11/G25",
+     "cite_ar": "أشرطة مثلثة G11/G25"
+    }
+   ],
+   "omit": [],
+   "omit_ar": []
+  },
+  {
+   "key": "eastern_najdi",
+   "ar": "النجدية الشرقية",
+   "en": "Eastern Najdi",
+   "row": 1,
+   "col": 3,
+   "window": {
+    "w": 1.0,
+    "h": 1.5,
+    "head": "semi",
+    "cite": "ratio about 1:1.5 G32; semicircular arched upper windows V5/V9",
+    "cite_ar": "النسبة نحو 1:1.5 G32؛ نوافذ علوية بعقود نصف دائرية V5/V9"
+   },
+   "parapet": {
+    "h": 0.6,
+    "type": "steps3",
+    "cite": "0.3-1.0 m p5; three-level parapets G21",
+    "cite_ar": "0.3-1.0 م p5؛ دراوي من ثلاث درجات G21"
+   },
+   "extras": [],
+   "omit": [],
+   "omit_ar": []
+  },
+  {
+   "key": "qatif_oasis",
+   "ar": "القطيف",
+   "en": "Qatif Oasis",
+   "row": 1,
+   "col": 4,
+   "window": {
+    "w": 0.9,
+    "h": 2.25,
+    "head": "pointed",
+    "cite": "ratio 1:2-1:5 p28; cusped pointed arches G34",
+    "cite_ar": "النسبة 1:2-1:5 p28؛ عقود مدببة مفصّصة G34"
+   },
+   "parapet": {
+    "h": 1.1,
+    "type": "flat",
+    "cite": "0.5-1.8 m, typical 1.1 m p5",
+    "cite_ar": "0.5-1.8 م، والمعتاد 1.1 م p5"
+   },
+   "extras": [],
+   "omit": [
+    "arabesque crenellations (pattern not specified)"
+   ],
+   "omit_ar": [
+    "شُرَف مزخرفة (النقش غير محدد)"
+   ]
+  },
+  {
+   "key": "east_coast",
+   "ar": "الساحل الشرقي",
+   "en": "East Coast",
+   "row": 0,
+   "col": 4,
+   "window": {
+    "w": 0.9,
+    "h": 1.8,
+    "head": "semi",
+    "cite": "ratio 1:1.5-1:3 p34; semicircular arch in frame V5",
+    "cite_ar": "النسبة 1:1.5-1:3 p34؛ عقد نصف دائري في الإطار V5"
+   },
+   "parapet": {
+    "h": 1.3,
+    "type": "flat",
+    "cite": "0.7-1.7 m, typical 1.3 m p9; mostly no cornice G21",
+    "cite_ar": "0.7-1.7 م، والمعتاد 1.3 م p9؛ غالباً بلا كورنيش G21"
+   },
+   "extras": [
+    {
+     "type": "mashrabiya",
+     "w": 3.6,
+     "cite": "mashrabiya 3.6 m p9; along the upper floors G6",
+     "cite_ar": "مشربية 3.6 م p9؛ على امتداد الأدوار العليا G6"
+    }
+   ],
+   "omit": [],
+   "omit_ar": []
+  },
+  {
+   "key": "alahsa_oasis",
+   "ar": "الأحساء",
+   "en": "Al-Ahsa Oasis",
+   "row": 2,
+   "col": 4,
+   "window": {
+    "w": 1.6,
+    "h": 2.7,
+    "head": "semi",
+    "cite": "arched window 1.6 x 2.7 m V9",
+    "cite_ar": "نافذة معقودة 1.6 × 2.7 م V9"
+   },
+   "parapet": {
+    "h": 0.8,
+    "type": "crown",
+    "cite": "0.7-0.9 m p5; spade/crown-like crenellations G20",
+    "cite_ar": "0.7-0.9 م p5؛ شُرَف على هيئة التاج G20"
+   },
+   "extras": [],
+   "omit": [
+    "lotus-cusp arch ornament (not dimensioned)"
+   ],
+   "omit_ar": [
+    "زخرفة العقد اللوتسي (بلا مقاسات)"
+   ]
+  },
+  {
+   "key": "hejazi_coast",
+   "ar": "الحجازية الساحلية",
+   "en": "Hejazi Coast",
+   "row": 2,
+   "col": 0,
+   "window": null,
+   "roshan": {
+    "w": 3.7,
+    "h": 4.1,
+    "proj": 0.9,
+    "cite": "roshan 3.7 x 4.1 m projecting 0.9 m V10",
+    "cite_ar": "روشن 3.7 × 4.1 م، بارز 0.9 م V10"
+   },
+   "parapet": {
+    "h": 2.0,
+    "type": "flat",
+    "cite": "0.8-2.0 m, typical 2.0 m p10",
+    "cite_ar": "0.8-2.0 م، والمعتاد 2.0 م p10"
+   },
+   "extras": [],
+   "omit": [],
+   "omit_ar": []
+  },
+  {
+   "key": "taif_highlands",
+   "ar": "الطائف",
+   "en": "Taif Highlands",
+   "row": 2,
+   "col": 1,
+   "window": {
+    "w": 1.2,
+    "h": 3.0,
+    "head": "semi",
+    "cite": "arch-top window 1.2 x 3.0 m V10",
+    "cite_ar": "نافذة معقودة الرأس 1.2 × 3.0 م V10"
+   },
+   "parapet": {
+    "h": 1.1,
+    "type": "circles",
+    "cite": "1.0-1.2 m p10; flat parapets with circular openings G24",
+    "cite_ar": "1.0-1.2 م p10؛ دراوي مستوية بفتحات دائرية G24"
+   },
+   "extras": [],
+   "omit": [],
+   "omit_ar": []
+  },
+  {
+   "key": "bisha_desert",
+   "ar": "بيشة الصحراوية",
+   "en": "Bisha Desert",
+   "row": 2,
+   "col": 3,
+   "window": {
+    "w": 0.8,
+    "h": 1.2,
+    "head": "band",
+    "cite": "ratio 1:1.3-1:2 G31; white bands V5",
+    "cite_ar": "النسبة 1:1.3-1:2 G31؛ أشرطة بيضاء V5"
+   },
+   "parapet": {
+    "h": 0.6,
+    "type": "steps3",
+    "cite": "0.6 m read from figures p31; articulated parapets G21",
+    "cite_ar": "0.6 م مقروءة من الرسوم p31؛ دراوي مفصّلة G21"
+   },
+   "taper": 3,
+   "extras": [],
+   "omit": [
+    "mud-brick courses (spacing not given)"
+   ],
+   "omit_ar": [
+    "مداميك اللبن (المسافة غير مذكورة)"
+   ]
+  },
+  {
+   "key": "sarawat_mountains",
+   "ar": "جبال السروات",
+   "en": "Sarawat Mountains",
+   "row": 3,
+   "col": 1,
+   "window": {
+    "w": 0.8,
+    "h": 1.2,
+    "head": "stone",
+    "cite": "ratio 1:1.5-1:2 p5; heavy stone head and sill G31",
+    "cite_ar": "النسبة 1:1.5-1:2 p5؛ عتبة وجلسة حجريتان ثقيلتان G31"
+   },
+   "parapet": {
+    "h": 1.2,
+    "type": "flat",
+    "cite": "1.0-1.5 m read from figures p31",
+    "cite_ar": "1.0-1.5 م مقروءة من الرسوم p31"
+   },
+   "extras": [
+    {
+     "type": "triangles",
+     "cite": "triangular stone patterns G43",
+     "cite_ar": "زخارف حجرية مثلثة G43"
+    }
+   ],
+   "omit": [
+    "Al Sadu motifs (pattern not specified)"
+   ],
+   "omit_ar": [
+    "زخارف السدو (النقش غير محدد)"
+   ]
+  },
+  {
+   "key": "abha_highlands",
+   "ar": "مرتفعات أبها",
+   "en": "Abha Highlands",
+   "row": 3,
+   "col": 2,
+   "window": {
+    "w": 0.9,
+    "h": 1.35,
+    "head": "surround",
+    "cite": "ratio 1:1.2-1:2 G33; white surrounds V5",
+    "cite_ar": "النسبة 1:1.2-1:2 G33؛ إطارات بيضاء V5"
+   },
+   "parapet": null,
+   "taper": 3,
+   "extras": [
+    {
+     "type": "ragaf",
+     "count": 4,
+     "cite": "Al-Ragaf slate courses G22 (spacing illustrative)",
+     "cite_ar": "الرقف، الألواح الحجرية البارزة G22 (المسافة توضيحية)"
+    }
+   ],
+   "omit": [
+    "parapet height (no number)",
+    "Al-Qatt Al-Asiri (interior art)"
+   ],
+   "omit_ar": [
+    "ارتفاع الدروة (بلا رقم)",
+    "القط العسيري (فن داخلي)"
+   ]
+  },
+  {
+   "key": "aseer_escarpment",
+   "ar": "أصدار عسير",
+   "en": "Aseer Escarpment",
+   "row": 3,
+   "col": 3,
+   "window": {
+    "w": 0.8,
+    "h": 1.0,
+    "head": "surround",
+    "cite": "ratio 1:1-1:1.5 p31; white-framed windows G11",
+    "cite_ar": "النسبة 1:1-1:1.5 p31؛ نوافذ بإطارات بيضاء G11"
+   },
+   "parapet": null,
+   "taper": 3,
+   "extras": [
+    {
+     "type": "squares",
+     "cite": "band of square motifs above V10",
+     "cite_ar": "شريط زخارف مربعة فوق النافذة V10"
+    }
+   ],
+   "omit": [
+    "stone parapet height (no number)"
+   ],
+   "omit_ar": [
+    "ارتفاع الدروة الحجرية (بلا رقم)"
+   ]
+  },
+  {
+   "key": "najran",
+   "ar": "نجران",
+   "en": "Najran",
+   "row": 3,
+   "col": 4,
+   "window": {
+    "w": 1.0,
+    "h": 1.0,
+    "head": "square_above",
+    "cite": "window typical 1.0 m p5; small square above V5/L5",
+    "cite_ar": "النافذة المعتادة 1.0 م p5؛ مربع صغير فوقها V5/L5"
+   },
+   "parapet": {
+    "h": 1.6,
+    "type": "corners",
+    "cite": "1.0-3.3 m, typical 1.6 m p9; raised corners, crowned parapets G21",
+    "cite_ar": "1.0-3.3 م، والمعتاد 1.6 م p9؛ أركان مرتفعة ودراوي متوّجة G21"
+   },
+   "taper": 3,
+   "extras": [
+    {
+     "type": "ragaf",
+     "count": 5,
+     "cite": "horizontal mud bands (Midmakh) G8/G20 (spacing illustrative)",
+     "cite_ar": "أشرطة طينية أفقية (المدماخ) G8/G20 (المسافة توضيحية)"
+    }
+   ],
+   "omit": [],
+   "omit_ar": []
+  },
+  {
+   "key": "tuhama_foothills",
+   "ar": "سفوح تهامة",
+   "en": "Tuhama Foothills",
+   "row": 4,
+   "col": 1,
+   "window": {
+    "w": 0.8,
+    "h": 1.2,
+    "head": "serrated",
+    "cite": "ratio 1:1-1:2 G31; pairs under a serrated band V10",
+    "cite_ar": "النسبة 1:1-1:2 G31؛ أزواج تحت شريط مسنّن V10"
+   },
+   "parapet": null,
+   "extras": [],
+   "omit": [
+    "stepped parapet (no height)"
+   ],
+   "omit_ar": [
+    "دروة متدرجة (بلا ارتفاع)"
+   ]
+  },
+  {
+   "key": "tuhama_coast",
+   "ar": "ساحل تهامة",
+   "en": "Tuhama Coast",
+   "row": 4,
+   "col": 2,
+   "window": {
+    "w": 1.0,
+    "h": 2.0,
+    "head": "semi",
+    "cite": "arched 1:1.5-1:2.5 V5/L5; large arched openings G21",
+    "cite_ar": "معقودة 1:1.5-1:2.5 V5/L5؛ فتحات معقودة واسعة G21"
+   },
+   "parapet": null,
+   "extras": [],
+   "omit": [
+    "parapet (none described)",
+    "carved over-panels (motif not specified)"
+   ],
+   "omit_ar": [
+    "الدروة (غير موصوفة)",
+    "ألواح منحوتة فوق النوافذ (النقش غير محدد)"
+   ]
+  },
+  {
+   "key": "farasan_islands",
+   "ar": "جزر فرسان",
+   "en": "Farasan Islands",
+   "row": 4,
+   "col": 0,
+   "window": {
+    "w": 0.9,
+    "h": 1.8,
+    "head": "panel",
+    "cite": "arched 1:2 V5; window under a carved panel V10",
+    "cite_ar": "معقودة 1:2 V5؛ نافذة تحت لوح منحوت V10"
+   },
+   "parapet": null,
+   "extras": [],
+   "omit": [
+    "parapet height (no number)",
+    "coral carving pattern (not specified)"
+   ],
+   "omit_ar": [
+    "ارتفاع الدروة (بلا رقم)",
+    "نقش الحجر المرجاني (غير محدد)"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,529 @@
+/* ARCY company site. Builds on tokens.css (copied from the product, the one token root): greys, Markazi Text
+   for display, the Studio text pair, one easing. Logical properties throughout so Arabic mirrors without overrides.
+   The device: every page is a drawing sheet (hairline frame, sheet number, title block); numbers are dimension
+   chains; drawings use a draughtsman's line hierarchy. Thin, quiet, consistent. */
+
+:root{
+  --gutter:clamp(16px,4.5vw,64px);
+  --draw:cubic-bezier(.65,.05,.25,1);      /* slow, precise: the pen accelerates and settles */
+  --draw-t:2.2s;
+  --measure-text:34rem;                     /* about 60 characters */
+  --rule:light-dark(#D2D2D7,#48484A);       /* decorative hairlines (frame, rules): not information */
+  --line-ink:light-dark(#636366,#AEAEB2);   /* hairlines that carry meaning: 3:1 or better (see README) */
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;font-variant-numeric:tabular-nums}
+body{margin:0;background:var(--table);color:var(--ink);font-size:1.0625rem;line-height:var(--lh-prose);overflow-x:hidden}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:2px}
+main:focus{outline:none}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;color:var(--ink-2);overflow-wrap:anywhere;letter-spacing:0}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;inset-inline-start:16px;top:-80px;background:var(--ink);color:var(--on-ink);padding:10px 14px;border-radius:var(--r-m);z-index:20}
+.skip:focus{top:12px}
+.num{font-variant-numeric:tabular-nums lining-nums}
+
+/* The sheet: a hairline frame around the viewport, as on a drawing. */
+.frame{position:absolute;inset:10px;border:1px solid var(--rule);pointer-events:none;z-index:30}
+body{position:relative}
+@media (max-width:600px){.frame{inset:6px}}
+@media print{.frame{display:none}}
+
+/* Links: an underline that draws like a line, in the reading direction. */
+.top a,.foot a,.action,.sitemap a,.files a{text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat;
+  background-size:0% 1px;background-position:0 100%;transition:background-size .6s var(--draw)}
+[dir=rtl] :is(.top a,.foot a,.action,.sitemap a,.files a){background-position:100% 100%}
+:is(.top a,.foot a,.action,.sitemap a,.files a):is(:hover,:focus-visible){background-size:100% 1px}
+.top .brand{background:none}
+
+/* Header: quiet, text controls */
+.top{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:var(--s5);min-height:64px;padding:0 calc(var(--gutter) + 6px);
+  background:color-mix(in srgb,var(--table) 90%,transparent);backdrop-filter:saturate(1.3) blur(14px)}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.14em;font-size:.8125rem;text-decoration:none;min-height:var(--h-touch)}
+.brand svg{width:18px;height:auto}
+.top nav{flex:1}
+.menu summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;min-height:var(--h-touch);font-size:var(--t-s);color:var(--ink-2)}
+.menu summary::-webkit-details-marker{display:none}
+.menu ul{list-style:none;margin:0;padding:0}
+.menu a{display:inline-flex;align-items:center;min-height:var(--h-touch);color:var(--ink-2);font-size:var(--t-s);background-position:0 75%}
+[dir=rtl] .menu a{background-position:100% 75%}
+.menu a:hover,.menu a[aria-current]{color:var(--ink)}
+.menu a[aria-current]{background-size:100% 1px}
+.tools{display:flex;align-items:center;gap:4px}
+.tool{display:inline-grid;place-items:center;min-width:var(--h-touch);min-height:var(--h-touch);background:none;border:0;color:var(--ink-2);
+  font:inherit;font-size:var(--t-s);font-weight:600;cursor:pointer;text-decoration:none;border-radius:var(--r-m)}
+.tool:hover{color:var(--ink)}
+.tool[lang=ar]{font-family:var(--font-display);font-size:1.25rem;font-weight:500}
+@media (max-width:899px){
+  .menu[open] ul{position:absolute;inset-inline:10px;top:64px;background:var(--table);border-block:1px solid var(--rule);padding:8px var(--gutter) 18px;display:grid}
+}
+@media (min-width:900px){.menu summary{display:none}.menu ul{display:flex;gap:28px}}
+
+/* Typography */
+h1,h2,h3,.lede,.pull,.figures strong{font-family:var(--font-display);font-weight:500}
+.sheet-no,.scene-no{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.75rem;letter-spacing:.12em;color:var(--ink-3);margin:0 0 18px}
+.page h1{font-size:clamp(44px,6vw,88px);line-height:1;letter-spacing:-.015em;margin:0;text-wrap:balance}
+:lang(ar) .page h1,:lang(ar) .hero h1{line-height:1.2;letter-spacing:0}
+.lede{font-size:clamp(22px,2.2vw,30px);line-height:1.35;color:var(--ink-2);margin:24px 0 0;max-width:30ch;text-wrap:pretty}
+:lang(ar) .lede{line-height:1.6}
+.prose{max-width:var(--measure-text)}
+.prose h2,.results h2{font-size:clamp(28px,2.6vw,36px);line-height:1.15;margin:2.2em 0 .5em}
+.prose h3,.results h3{font-family:var(--font-text);font-size:var(--t-m);font-weight:600;margin:1.8em 0 .4em}
+.prose p,.prose li{text-wrap:pretty}
+.prose ul{padding:0;list-style:none}
+.prose li{padding:.55em 0;border-top:1px solid var(--rule)}
+.prose li:last-child{border-bottom:1px solid var(--rule)}
+.note{border-inline-start:1px solid var(--line-ink);padding-inline-start:var(--s4);color:var(--ink-2);font-size:var(--t-s)}
+.muted{color:var(--ink-3);font-size:var(--t-s)}
+.pull{margin:clamp(40px,8vh,88px) 0;padding:0;max-width:22ch;font-size:clamp(30px,3.6vw,48px);line-height:1.15;text-wrap:balance}
+:lang(ar) .pull{line-height:1.45;max-width:20ch}
+.pull p{margin:0}
+.pull p::before{content:"";display:block;width:48px;height:1px;background:var(--ink);margin-bottom:24px}
+.pull footer{font-family:var(--font-text);font-size:var(--t-s);color:var(--ink-3);margin-top:16px}
+
+/* Actions */
+.action{display:inline-flex;align-items:center;gap:12px;min-height:var(--h-touch);font-weight:600;font-size:1rem;color:var(--ink);background-size:100% 1px;background-position:0 85%}
+[dir=rtl] .action{background-position:100% 85%}
+.action:hover{background-size:0% 1px}
+.arrow{width:28px;height:1px;background:currentColor;position:relative;transition:width .6s var(--draw)}
+.arrow::after{content:"";position:absolute;inset-inline-end:0;top:-3px;width:7px;height:7px;border-top:1px solid;border-inline-end:1px solid;transform:rotate(45deg)}
+[dir=rtl] .arrow::after{transform:rotate(-45deg)}
+.action:hover .arrow{width:40px}
+.link{background:none;border:0;padding:0;font:inherit;color:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;min-height:24px}
+
+/* Plates: line hierarchy and the one orchestrated draw */
+.plate{margin:clamp(32px,6vh,64px) 0;color:var(--ink)}
+.plate-svg{direction:ltr;display:block;width:100%;height:auto;max-height:72vh;overflow:visible;stroke-linecap:round;stroke-linejoin:round}
+.plate figcaption{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline;margin-top:14px;padding-top:10px;border-top:1px solid var(--rule);font-size:.75rem;color:var(--ink-3)}
+.plate figcaption span:first-child{color:var(--ink-2);font-weight:600}
+.face{fill:var(--table)}
+.poche{fill:var(--ink);stroke:var(--ink)}
+.hatch-fill{fill:url(#hatch)}
+#hatch path{stroke:var(--ink)}
+.hatch-light{fill:url(#hatch-light)}
+.plot-bare{stroke:none}
+#hatch-light path{stroke:var(--line-ink)}
+.plate-svg.framed{overflow:hidden}
+.plate-svg.framed text.ann{paint-order:stroke;stroke:var(--table);stroke-width:calc(4px * var(--weight));stroke-linejoin:round}
+.plate-svg{--type:1;--weight:1}
+.w-cut{stroke-width:calc(1.6px * var(--weight))}
+.w-edge{stroke-width:calc(.9px * var(--weight))}
+.w-fine{stroke-width:calc(.5px * var(--weight));stroke:var(--line-ink)}
+.w-beyond{stroke-width:calc(.7px * var(--weight));stroke:var(--line-ink);stroke-dasharray:calc(4px * var(--weight)) calc(3px * var(--weight))}
+.w-con{stroke-width:calc(.4px * var(--weight));stroke:var(--rule)}
+.w-section{stroke-width:1.2;stroke-dasharray:14 4 2 4}
+.w-target{stroke-width:calc(1.2px * var(--weight));stroke-dasharray:calc(3px * var(--weight)) calc(3px * var(--weight))}
+.w-review,.w-review-line{stroke:var(--fault);stroke-width:calc(1.4px * var(--weight))}
+.w-review{stroke-dasharray:calc(6px * var(--weight)) calc(4px * var(--weight))}
+.ann{font-size:calc(11px * var(--type));fill:var(--ink-2);stroke:none;font-family:var(--font-text);letter-spacing:.04em}
+.ann .ann-line,.ann-line{stroke:var(--line-ink);stroke-width:calc(.8px * var(--weight));fill:none}
+.ann circle{fill:none;stroke:var(--line-ink)}
+.ann-key{font-weight:600;font-size:calc(13px * var(--type));fill:var(--ink)}
+.ann-label{font-size:calc(12px * var(--type));fill:var(--ink-2)}
+.ann-num{font-size:calc(12px * var(--type));font-weight:600;fill:var(--ink)}
+.ann-review{fill:var(--fault);font-weight:600;font-size:calc(12px * var(--type))}
+.mark-line{fill:none;stroke:var(--ink);stroke-width:.35}
+.mark-fill{fill:var(--ink);stroke:none}
+.ann text{stroke:none}
+
+/* Drawing: lines with pathLength=1 draw from 0; fills and annotations settle after. Only with JS and motion. */
+.js .plate:not(.in) [pathLength]{stroke-dasharray:1 1;stroke-dashoffset:1}
+.js .plate:not(.in) :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text){opacity:0}
+.js .plate.in [pathLength]{stroke-dasharray:1 1;stroke-dashoffset:0;transition:stroke-dashoffset var(--draw-t) var(--draw) var(--d,0s)}
+.js .plate.in :is(.w-beyond,.w-section,.w-target,.w-review){transition:opacity 1s var(--draw) var(--d,0s);stroke-dasharray:revert-layer}
+.js .plate.in .w-beyond{stroke-dasharray:4 3}.js .plate.in .w-section{stroke-dasharray:14 4 2 4}.js .plate.in .w-target{stroke-dasharray:3 3}.js .plate.in .w-review{stroke-dasharray:6 4}
+.js .plate:not(.in) :is(.w-beyond,.w-section,.w-target,.w-review){opacity:0}
+.js .plate.in :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text){opacity:1;transition:opacity 1.2s var(--draw) calc(var(--d,0s) + .8s)}
+.js .plate.in .face.w-edge{transition:stroke-dashoffset var(--draw-t) var(--draw) var(--d,0s)}
+@media (prefers-reduced-motion:reduce){
+  .js .plate [pathLength],.js .plate:not(.in) [pathLength]{stroke-dasharray:none;stroke-dashoffset:0;transition:none}
+  .js .plate :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text,.w-beyond,.w-section,.w-target,.w-review){opacity:1!important;transition:none}
+  .js .plate .w-beyond{stroke-dasharray:4 3}.js .plate .w-section{stroke-dasharray:14 4 2 4}.js .plate .w-target{stroke-dasharray:3 3}.js .plate .w-review{stroke-dasharray:6 4}
+  .arrow,.top a,.foot a,.action{transition:none}
+}
+
+.close{text-align:center;padding:clamp(96px,18vh,200px) 16px;border-top:1px solid var(--rule)}
+.close-mark svg{width:44px;height:auto;color:var(--ink)}
+.early{max-width:var(--measure-text);margin:48px auto 0}
+
+/* State: colour only with a mark and a word */
+.state{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-s);font-weight:600}
+.state::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.state.pass{color:var(--good);--m:var(--mark-pass)}
+.state.fail{color:var(--fault);--m:var(--mark-fail)}
+.state.pending{color:var(--caution);--m:var(--mark-caution)}
+
+/* Inner pages */
+.page{max-width:1200px;margin:0 auto;padding:clamp(56px,12vh,128px) calc(var(--gutter) + 6px) 40px}
+.page-head{max-width:900px}
+.status{margin:28px 0 0;color:var(--ink-2);font-size:var(--t-s);max-width:var(--measure-text)}
+.story{max-width:var(--measure-text);margin-top:40px;font-size:1.1875rem;line-height:1.7}
+.story p{margin:0 0 .8em}
+.story .num{font-weight:600}
+.table-wrap{overflow-x:auto;border-block:1px solid var(--rule);margin:var(--s4) 0}
+table{border-collapse:collapse;width:100%;font-size:var(--t-s);line-height:1.5}
+th,td{text-align:start;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--rule)}
+[dir=rtl] :is(th,td){padding:12px 0 12px 14px}
+thead th{color:var(--ink-3);font-weight:600;font-size:.75rem;letter-spacing:.06em;white-space:nowrap}
+tbody th{font-weight:400}
+tbody tr:last-child>*{border-bottom:0}
+.fold{border-top:1px solid var(--rule);margin-top:24px}
+.fold summary{cursor:pointer;list-style:none;display:flex;align-items:baseline;justify-content:space-between;gap:16px;min-height:var(--h-touch)}
+.fold summary::-webkit-details-marker{display:none}
+.fold summary::after{content:"+";font-size:1.5rem;color:var(--ink-3)}
+.fold[open] summary::after{content:"−"}
+.fold summary h2{margin:.6em 0}
+.tasks,.files,.sitemap{list-style:none;padding:0;font-size:var(--t-s)}
+.tasks li,.sitemap li{padding:8px 0;border-bottom:1px solid var(--rule)}
+.results{max-width:900px}
+
+/* The title block: bottom of every sheet, aligned to the inline end like a drawing's */
+.title-block{margin:clamp(64px,12vh,120px) 0 0;display:flex;justify-content:flex-end}
+.title-block dl{display:grid;grid-template-columns:auto 1fr auto auto;margin:0;border:1px solid var(--rule);font-size:.75rem;min-width:min(100%,560px)}
+.title-block dl>div{padding:8px 12px;border-inline-start:1px solid var(--rule)}
+.title-block dl>div:first-child{border-inline-start:0}
+.title-block dt{color:var(--ink-3);letter-spacing:.06em;font-size:.6875rem}
+.title-block dd{margin:2px 0 0;color:var(--ink);font-weight:600}
+@media (max-width:600px){.title-block dl{grid-template-columns:1fr 1fr}.title-block dl>div:nth-child(3){border-inline-start:0}.title-block dl>div:nth-child(n+3){border-top:1px solid var(--rule)}}
+.home-tb{max-width:1360px;margin:0 auto;padding:0 calc(var(--gutter) + 6px) 40px}
+.home-tb .title-block{margin-top:0}
+
+/* Footer */
+.foot{border-top:1px solid var(--rule);padding:56px calc(var(--gutter) + 6px) 40px;color:var(--ink-2);font-size:var(--t-s)}
+.foot-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s5);max-width:1360px;margin:0 auto}
+.foot h2{font-family:var(--font-text);font-size:.75rem;letter-spacing:.08em;color:var(--ink-3);font-weight:600;margin:0 0 10px}
+.foot ul{list-style:none;margin:0;padding:0}
+.foot a{display:inline-flex;min-height:32px;align-items:center}
+.foot a:hover{color:var(--ink)}
+.foot-mark{display:flex;align-items:center;gap:8px;max-width:1360px;margin:40px auto 0;font-weight:600;letter-spacing:.14em;font-size:.75rem;color:var(--ink)}
+.foot-mark svg{width:16px;height:auto}
+
+/* Language choice */
+.choose-main{min-height:100svh;display:grid;place-content:center;gap:28px;text-align:center}
+.choose-mark svg{width:56px;height:auto}
+.choose-list{list-style:none;display:flex;gap:28px;padding:0;margin:0;justify-content:center}
+.choose-list a{font-family:var(--font-display);font-size:1.75rem}
+
+/* Open Graph cards (rendered by scripts/og.mjs, never shown on the site) */
+.og{margin:0;width:1200px;height:630px;overflow:hidden}
+.og-card{position:relative;width:1200px;height:630px;padding:56px 64px;border:1px solid var(--rule);display:grid;grid-template-columns:1fr 1.3fr;gap:48px;align-items:center}
+.og-plate{grid-column:2;grid-row:1}
+.og-plate .plate-svg{max-height:500px}
+.og-title{grid-column:1;grid-row:1;font-family:var(--font-display);font-size:64px;line-height:1.1;margin:0;color:var(--ink)}
+.og-brand{position:absolute;inset-block-end:40px;inset-inline-start:64px;display:flex;gap:10px;align-items:center;font-weight:600;letter-spacing:.14em;margin:0}
+.og-brand svg{width:22px}
+.og-mark svg{width:220px;display:block;margin:auto}
+
+.verdict{margin:24px 0;padding-inline-start:24px;border-inline-start:1px solid var(--ink);font-family:var(--font-display);font-size:clamp(22px,2vw,28px);line-height:1.4;max-width:32ch}
+:lang(ar) .verdict{line-height:1.7}
+.verdict p{margin:0}.verdict footer{font-family:var(--font-text);font-size:var(--t-s);color:var(--ink-3);margin-top:12px}
+.page .plate{max-width:980px}
+
+/* ---------- Home: after the stage, the rhythm changes ---------- */
+.band{background:#0B0B0C;color:#F5F5F7;padding:clamp(96px,20vh,220px) calc(var(--gutter) + 6px);margin:0}
+.band h2{font-size:clamp(48px,9vw,150px);line-height:.98;letter-spacing:-.025em;margin:0 0 32px;max-width:14ch}
+:lang(ar) .band h2{line-height:1.25;letter-spacing:0}
+.band p{max-width:36rem;color:#D1D1D6;font-size:clamp(17px,1.4vw,21px);margin:0}
+.detail{display:grid;gap:32px;align-items:end;padding:clamp(80px,14vh,160px) 0 clamp(80px,14vh,160px) calc(var(--gutter) + 6px);overflow:hidden}
+@media (min-width:960px){.detail{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}.detail-text{padding-inline-end:calc(var(--gutter) + 6px)}}
+.detail-plate{margin:0;margin-inline-start:-6vw}
+.detail-plate .plate-svg{max-height:none}
+.detail h2,.teaser h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1;margin:0 0 14px}
+:lang(ar) :is(.detail,.teaser) h2{line-height:1.35}
+.detail p,.teaser p{color:var(--ink-2);max-width:28rem}
+.teaser{padding:clamp(64px,12vh,140px) calc(var(--gutter) + 6px);border-top:1px solid var(--rule);display:grid;gap:24px}
+@media (min-width:960px){.teaser{grid-template-columns:minmax(0,22rem) minmax(0,1fr);align-items:center}}
+.teaser-plate{margin:0}
+.teaser-plate .plate-svg{max-height:340px}
+
+/* Dark: a night sheet. Same greys; a faint sheet grid behind the drawing. */
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .stage-canvas{background:radial-gradient(circle at 50% 45%,rgb(255 255 255 / .03),transparent 70%),repeating-linear-gradient(0deg,rgb(255 255 255 / .025) 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,rgb(255 255 255 / .025) 0 1px,transparent 1px 32px)}}
+:root[data-theme=dark] .stage-canvas{background:radial-gradient(circle at 50% 45%,rgb(255 255 255 / .03),transparent 70%),repeating-linear-gradient(0deg,rgb(255 255 255 / .025) 0 1px,transparent 1px 32px),repeating-linear-gradient(90deg,rgb(255 255 255 / .025) 0 1px,transparent 1px 32px)}
+
+.ann-region-ar{font-family:var(--font-display);font-size:17px;fill:var(--ink);font-weight:500}
+.ann-region-en{font-size:10px;fill:var(--ink-3);letter-spacing:.06em}
+.narrow-only{display:none}
+@media (max-width:640px){.wide-only{display:none}.narrow-only{display:block}}
+
+/* ---------- Paper: a faint generated tooth under every sheet ---------- */
+body{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ---------- The sheet index: a slim rail of sheet numbers ---------- */
+.rail{position:fixed;inset-inline-end:16px;top:50%;transform:translateY(-50%);z-index:9}
+.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.rail a{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-height:24px;text-decoration:none;color:var(--ink-3);font-size:.6875rem;background:none}
+.rail .rail-no{font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;position:relative;padding-inline-end:14px}
+.rail .rail-no::after{content:"";position:absolute;inset-inline-end:0;top:50%;width:8px;height:1px;background:currentColor;transition:width .4s var(--draw)}
+.rail .rail-t{opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s var(--draw);white-space:nowrap;background:var(--table);padding:0 4px}
+.rail a:hover .rail-t,.rail a:focus-visible .rail-t{opacity:1;transform:none}
+.rail a[aria-current]{color:var(--ink)}
+.rail a[aria-current] .rail-no::after{width:12px;height:2px}
+@media (max-width:1359px){.rail{display:none}}
+body.home .rail{display:none}
+
+/* ---------- Turning to the next sheet: cross-document view transitions ---------- */
+@view-transition{navigation:auto}
+.page-head .sheet-no,.step-first .step-no{view-transition-name:sheetno}
+.title-block{view-transition-name:titleblock}
+.top{view-transition-name:top}
+::view-transition-old(root){animation:sheet-out .28s ease-out both}
+::view-transition-new(root){animation:sheet-in .32s ease-out both}
+::view-transition-group(sheetno),::view-transition-group(titleblock){animation-duration:.32s}
+@keyframes sheet-out{to{opacity:0;transform:translateX(-1%)}}
+@keyframes sheet-in{from{opacity:0;transform:translateX(1%)}}
+[dir=rtl]::view-transition-old(root){animation-name:sheet-out-rtl}
+[dir=rtl]::view-transition-new(root){animation-name:sheet-in-rtl}
+@keyframes sheet-out-rtl{to{opacity:0;transform:translateX(1%)}}
+@keyframes sheet-in-rtl{from{opacity:0;transform:translateX(-1%)}}
+@supports not (view-transition-name:a){.js main{animation:page-in .5s var(--draw)}}
+@keyframes page-in{from{opacity:0;transform:translateY(8px)}}
+@media (prefers-reduced-motion:reduce){::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}.js main{animation:none}}
+
+/* ---------- The nineteen characters: a horizontal gallery ---------- */
+.gallery{margin-top:48px}
+.gal-bar{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.gal-count{font-family:ui-monospace,Menlo,monospace;font-size:.875rem;margin:0}
+.gal-hint{margin:0 12px}
+.gal-track{list-style:none;margin:0 calc(-1 * (var(--gutter) + 6px));padding:0 calc(var(--gutter) + 6px) 24px;display:flex;gap:6vw;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;cursor:grab;overscroll-behavior-x:contain}
+.gal-track:active{cursor:grabbing}
+.rslide{flex:0 0 min(86vw,980px);scroll-snap-align:center;display:grid;gap:24px;align-items:end}
+@media (min-width:900px){.rslide{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.rplate{margin:0}
+.rplate .plate-svg{max-height:62vh}
+.rname-ar{font-family:var(--font-display);font-weight:500;font-size:clamp(48px,6vw,96px);line-height:1.1;margin:4px 0 0}
+.rname-en{font-family:var(--font-display);font-size:clamp(22px,2.2vw,32px);color:var(--ink-2);margin:0 0 18px}
+.rsrc{font-size:.8125rem;color:var(--ink-2);max-width:30rem}
+.rsrc strong{display:block;font-size:.6875rem;letter-spacing:.08em;color:var(--ink-3);font-weight:600}
+/* Gallery plates fill their frame and draw quickly (about a second), so a name is never beside an empty frame. */
+.rslide{grid-template-columns:none}
+@media (min-width:900px){.rslide{grid-template-columns:auto minmax(16rem,1fr)}}
+.rplate{border:1px solid var(--rule);padding:clamp(16px,2.5vw,32px);display:flex;justify-content:center}
+.rplate .plate-svg{height:min(64vh,560px);width:auto;max-width:100%;max-height:none}
+.rsrc-h{font-size:.6875rem;letter-spacing:.08em;color:var(--ink-3);font-weight:600;margin:18px 0 4px}
+ul.rsrc{list-style:none;padding:0;margin:0;font-size:.875rem;color:var(--ink-2);max-width:32rem}
+ul.rsrc li{padding:5px 0;border-top:1px solid var(--rule)}
+ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink)}
+.gal-legend{max-width:44rem;margin-top:28px}
+
+
+/* ---------- Home: the stage. One grid: the drawing has its area, the words have theirs; they never overlap. ---------- */
+.stage-wrap{position:relative;height:1240vh}
+.stage{position:sticky;top:0;height:100svh;display:grid;gap:0;padding:72px calc(var(--gutter) + 6px) 32px;
+  grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,58fr) minmax(0,42fr);grid-template-areas:"draw" "words"}
+@media (min-width:900px){.stage{grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:minmax(0,1fr);grid-template-areas:"words draw";column-gap:clamp(32px,5vw,96px)}}
+.stage-draw{grid-area:draw;position:relative;min-height:0;min-width:0}
+.stage-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;cursor:crosshair;touch-action:pan-y}
+.stage-canvas:focus-visible{outline:1px solid var(--rule);outline-offset:4px}
+.stage-words{grid-area:words;min-height:0;display:flex;flex-direction:column;justify-content:center;gap:20px;padding-top:16px}
+@media (min-width:900px){.stage-words{padding-top:0}}
+.steps{list-style:none;margin:0;padding:0}
+.step{display:none}
+.step[data-on]{display:block}
+
+.step h3{font-family:var(--font-display);font-weight:500;font-size:clamp(28px,3.4vw,54px);line-height:1.08;margin:6px 0 14px;text-wrap:balance}
+:lang(ar) .step h3{line-height:1.35}
+.step p{margin:0 0 10px;color:var(--ink-2);max-width:32rem}
+.step-no{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.75rem;letter-spacing:.12em;color:var(--ink-3)}
+.step-first h1{font-size:clamp(40px,5.4vw,92px);line-height:1;letter-spacing:-.02em;margin:6px 0 20px}
+:lang(ar) .step-first h1{line-height:1.25;letter-spacing:0}
+.step-first .l{display:block}
+.legend{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8125rem;color:var(--ink-2)}
+.legend li{display:inline-flex;align-items:center;gap:8px}
+.legend .sw{width:12px;height:16px;border:1.2px solid var(--ink);flex:none}
+.legend .sw-pass{background:var(--ink)}
+.legend .sw-target{border-style:dashed}
+.step .quiet{font-size:.8125rem;color:var(--ink-3);margin-top:16px}
+.stage-controls{display:none;flex-wrap:wrap;gap:4px 24px;font-size:.8125rem;color:var(--ink-2)}
+.stage-wrap[data-step="3"] .stage-controls,.stage-wrap[data-step="4"] .stage-controls{display:flex}
+.stage-controls label{display:none;align-items:center;gap:10px;min-height:var(--h-touch)}
+.stage-wrap[data-step="3"] [data-control=sun],.stage-wrap[data-step="4"] [data-control=cut]{display:inline-flex}
+.stage-controls input[type=range]{accent-color:var(--ink);width:min(200px,40vw)}
+.stage-controls output{font-family:ui-monospace,Menlo,monospace}
+.stage-note{font-size:.6875rem;color:var(--ink-3);margin:0}
+@media (max-width:899px){.step h3{font-size:clamp(24px,6.4vw,34px)}.step-first h1{font-size:clamp(34px,9vw,56px)}.step p{font-size:.9375rem}.stage-words{justify-content:flex-start}}
+@media (max-height:700px) and (max-width:899px){.step-first .hero-sub{display:none}}
+/* No script or reduced motion: the stages as a plain sequence of finished plates, drawing then words */
+.stage-wrap:not(.is-live){height:auto}
+.stage-wrap:not(.is-live) .stage{position:static;height:auto;display:block}
+.stage-wrap:not(.is-live) .stage-draw{display:none}
+.stage-wrap:not(.is-live) .step{display:block;margin-bottom:72px}
+.stage-wrap:not(.is-live) .stage-controls{display:none}
+.still{display:block;width:100%;height:min(56vh,520px);margin-bottom:20px}
+
+/* Legal drafts: the banner sits at the top of the sheet, plain and unmissable. */
+.draft-banner{margin:20px 0 0;padding:12px 16px;border:1px solid var(--caution);color:var(--caution);font-size:var(--t-s);max-width:var(--measure-text)}
+/* The four readers: a quiet list, one row each */
+.for-list{list-style:none;margin:32px 0 0;padding:0;border-top:1px solid var(--rule)}
+.for-list a{display:grid;gap:4px 24px;padding:20px 0;border-bottom:1px solid var(--rule);text-decoration:none;background:none}
+@media (min-width:900px){.for-list a{grid-template-columns:6rem minmax(0,1fr) minmax(0,1.6fr);align-items:baseline}}
+.for-list .sheet-no{margin:0}
+.for-t{font-family:var(--font-display);font-size:clamp(22px,2vw,30px);color:var(--ink)}
+.for-l{color:var(--ink-2);font-size:var(--t-s)}
+.for-list a:hover .for-t{text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.for-row{padding:clamp(64px,12vh,120px) calc(var(--gutter) + 6px);border-top:1px solid var(--rule);max-width:1360px;margin:0 auto}
+.for-row h2{font-size:clamp(26px,2.6vw,36px);margin:0}
+.changelog{list-style:none;padding:0;margin:32px 0 0;max-width:var(--measure-text)}
+.changelog li{padding:16px 0;border-top:1px solid var(--rule)}
+.changelog p{margin:6px 0 0;color:var(--ink-2)}
+@media (max-width:1559px){.rail{display:none}}
+
+/* Words and drawing are one unit: the opacity of the one visible step is set from the drawing's own clock
+   (assets/words.js). No timed animation here: a timed fade would run on its own and lag the picture. */
+.is-live .step{will-change:opacity}
+/* The story chain: a dimension line for the whole stage, inked up to where the drawing has come. */
+.stage-foot{display:grid;gap:10px}
+.chain{list-style:none;margin:0;padding:0;position:relative;height:30px;border-top:1px solid var(--rule);--u:0}
+.chain::before{content:"";position:absolute;inset-inline-start:0;top:-1px;height:1px;width:calc(var(--u) * 100%);background:var(--ink)}
+.chain li{position:absolute;inset-inline-start:calc(var(--at) / var(--n) * 100%);top:0;padding-top:9px;font-size:.6875rem;line-height:1.4;color:var(--ink-3);white-space:nowrap}
+.chain li::before{content:"";position:absolute;inset-inline-start:0;top:-4px;width:1px;height:7px;background:var(--line-ink)}
+.chain li[data-now]{color:var(--ink);font-weight:600}
+.stage-wrap:not(.is-live) .chain{display:none}
+@media (min-width:900px){.stage-words{justify-content:space-between}.stage-words .steps{margin-block:auto}}
+@media (max-width:899px){.stage-words{justify-content:space-between}.chain li{font-size:.625rem}}
+
+/* ---------- Scenes: an inner page opens like the home stage (assets/scene.js; MOTION.md rule 6) ---------- */
+.page-scene{max-width:none;padding:0}
+.page-body{max-width:1200px;margin:0 auto;padding:clamp(48px,10vh,112px) calc(var(--gutter) + 6px) 40px}
+.scene-wrap{height:calc(100vh + (var(--stages) - .5) * 90vh)}
+.scene-plate{margin:0;color:var(--ink);display:grid;place-items:center;--p:99}
+.scene-plate>div{width:100%;height:100%;min-height:0}
+.scene-plate .plate-svg{width:100%;height:100%;max-height:none}
+/* the scrubbed draw: a line's dash offset and a fill's opacity are computed from the scene's clock --p, the
+   element's stage --k and its place in the stage --o. At --p:99 (no script, reduced motion) all is finished. */
+.scene-plate [pathLength]{stroke-dasharray:1 1;stroke-dashoffset:calc(clamp(0, 1 - (var(--p) - var(--k,0) - var(--o,0) * .45) / .4, 1) * 1px)}
+.scene-plate :is(.poche,.hatch-fill,.hatch-light,.ann,.ann-line,.mark-fill,text,.w-beyond,.w-section,.w-target,.w-review,.w-review-line,.dot){opacity:clamp(0, (var(--p) - var(--k,0) - var(--o,0) * .45 - .2) / .3, 1)}
+.scene .step h2{font-family:var(--font-display);font-weight:500;font-size:clamp(28px,3.2vw,50px);line-height:1.08;margin:6px 0 14px;text-wrap:balance}
+:lang(ar) .scene .step h2{line-height:1.35}
+.scene .step-first h1{font-size:clamp(38px,4.6vw,76px);margin:6px 0 0}
+.scene .step-first .lede{margin-top:18px;font-size:clamp(19px,1.7vw,25px);max-width:28ch}
+.scene .step p{max-width:30rem}
+.scene .step .num{font-weight:600;color:var(--ink)}
+.chain-bare{height:8px}
+@media (max-width:899px){
+  .scene{grid-template-rows:minmax(0,44fr) minmax(0,56fr)}
+  .scene .step h2{font-size:clamp(24px,6.4vw,34px)}.scene .step-first h1{font-size:clamp(32px,8.6vw,48px)}
+  .scene .step-first .lede{font-size:1.0625rem;line-height:1.5}:lang(ar) .scene .step-first .lede{line-height:1.7}
+}
+/* without the script (or with reduced motion): the finished plate, then the chapters, in the page's column */
+.scene-wrap:not(.is-live) .stage{max-width:1200px;margin:0 auto;padding:clamp(56px,12vh,128px) calc(var(--gutter) + 6px) 0}
+.scene-wrap:not(.is-live) .stage-draw{display:block;margin:0 0 40px}
+.scene-wrap:not(.is-live) .scene-plate .plate-svg{height:auto;max-height:72vh}
+.scene-wrap:not(.is-live) .step{margin-bottom:48px}
+.scene-wrap:not(.is-live) .step-first{margin-bottom:64px}
+
+/* The rest of a scene page: numbered sections, the heading on one side and its content on the other. */
+.sectioned{max-width:none;counter-reset:sec}
+.sec{counter-increment:sec;border-top:1px solid var(--rule);padding:clamp(36px,7vh,72px) 0;display:grid;gap:8px 48px}
+.sec>h2{margin:0;font-size:clamp(30px,3vw,44px);line-height:1.1;text-wrap:balance}
+:lang(ar) .sec>h2{line-height:1.4}
+.sec>h2::before{content:counter(sec,decimal-leading-zero);display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.75rem;letter-spacing:.12em;color:var(--ink-3);margin-bottom:14px;font-weight:400}
+.sec-body{min-width:0}
+.sec-body>:first-child{margin-top:0}
+.sec-body>p{max-width:var(--measure-text);font-size:1.125rem;line-height:1.7}
+.sec-body>ul{max-width:var(--measure-text)}
+.sec-body .note{font-size:var(--t-s)}
+@media (min-width:900px){.sec{grid-template-columns:minmax(0,4fr) minmax(0,8fr)}.sec>h2{position:sticky;top:96px;align-self:start}}
+.page-body>.pull{margin-top:0}
+.page-body .results{max-width:none}
+.page-body .results>section,.page-body .results>.fold{border-top:1px solid var(--rule);padding-top:clamp(28px,5vh,48px);margin-top:clamp(28px,5vh,48px)}
+.page-body .results .fold{padding-top:0}
+/* The ending: one line, one way on. */
+.page-close{border-top:1px solid var(--ink);margin-top:clamp(64px,12vh,128px);padding-top:clamp(32px,6vh,56px)}
+.close-line{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,4vw,60px);line-height:1.1;max-width:20ch;margin:0 0 28px;text-wrap:balance}
+:lang(ar) .close-line{line-height:1.4}
+/* a label that stands on linework carries a halo of the paper, so it reads as a note laid over the drawing */
+.plate-svg text.halo{paint-order:stroke;stroke:var(--table);stroke-width:calc(5px * var(--weight));stroke-linejoin:round}
+
+/* ---------- Home: the story's echo, a strip of the timeline and three sentences ---------- */
+.echo{padding:clamp(64px,12vh,140px) calc(var(--gutter) + 6px);border-top:1px solid var(--rule);display:grid;gap:32px;max-width:1360px;margin:0 auto}
+.echo h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1;margin:0 0 14px;max-width:18ch;text-wrap:balance}
+:lang(ar) .echo h2{line-height:1.4}
+.echo p{color:var(--ink-2);max-width:30rem}
+.echo-plate{margin:0}
+@media (min-width:960px){.echo{grid-template-columns:minmax(0,22rem) minmax(0,1fr);align-items:center;gap:64px}}
+
+/* ---------- Articles: a cover plate, a display intro, pull quotes, a data graphic, margin notes ---------- */
+.article{max-width:1200px}
+.art-head h1{font-size:clamp(40px,5.6vw,84px);max-width:16ch}
+.art-cover{max-width:none!important;margin:clamp(40px,8vh,88px) 0 0;padding:clamp(20px,4vw,56px);border:1px solid var(--rule)}
+.art-cover .plate-svg{max-height:min(60vh,520px)}
+.art-intro{display:grid;gap:16px 64px;margin:clamp(40px,8vh,88px) 0;padding-bottom:clamp(40px,8vh,88px);border-bottom:1px solid var(--ink)}
+.art-intro .lede{margin:0;max-width:24ch;font-size:clamp(26px,3vw,42px);line-height:1.2;color:var(--ink)}
+:lang(ar) .art-intro .lede{line-height:1.5}
+.art-intro .prose{font-size:1.1875rem;line-height:1.7;align-self:end}
+.art-intro .prose>:first-child{margin-top:0}.art-intro .prose>:last-child{margin-bottom:0}
+@media (min-width:1000px){.art-intro{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}}
+.art-sec{display:grid;gap:8px 64px;padding:clamp(20px,4vh,40px) 0;align-items:start}
+.art-sec .prose{max-width:none}
+.art-sec .prose>:is(p,ul,ol,h2,h3){max-width:var(--measure-text)}
+.art-sec .prose>h2{font-size:clamp(28px,2.8vw,40px);margin-top:0;max-width:22ch;text-wrap:balance}
+.art-sec .prose>.pull{margin:clamp(32px,6vh,64px) 0;max-width:20ch}
+.art-sec .prose>.plate{margin:clamp(32px,6vh,64px) 0;padding:clamp(16px,3vw,40px);border:1px solid var(--rule);max-width:none}
+.art-sec .prose>.plate .plate-svg{max-height:none}
+.margin{font-size:.75rem;line-height:1.5;color:var(--ink-3);border-top:1px solid var(--line-ink);padding-top:10px;max-width:var(--measure-text)}
+.margin p{margin:0 0 4px;font-weight:600;letter-spacing:.06em;color:var(--ink-2)}
+.margin ul{list-style:none;margin:0;padding:0}
+.margin li{overflow-wrap:anywhere;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.6875rem;padding:2px 0}
+.margin a{color:var(--ink-2)}
+@media (min-width:1000px){.art-sec{grid-template-columns:minmax(0,var(--measure-text)) minmax(0,15rem);justify-content:space-between}.art-sec .prose{grid-column:1}.margin{grid-column:2;position:sticky;top:96px;margin-top:8px}
+  .art-sec:has(.plate) {grid-template-columns:minmax(0,1fr) minmax(0,15rem)}}
+.art-close{text-align:center}
+.art-close .close-line{margin-inline:auto;font-size:clamp(26px,3vw,42px)}
+.art-close .close-mark svg{width:36px;height:auto;color:var(--ink)}
+
+/* ---------- Who works: the one place colour says who (the product's own agent colours), always with a name ---------- */
+.who path,.who rect{stroke:none}
+.who-agent :is(path,rect),rect.who-agent{fill:var(--agent)}.who-critic :is(path,rect),rect.who-critic{fill:var(--critic)}.who-auditor :is(path,rect),rect.who-auditor{fill:var(--auditor)}.who-you :is(path,rect){fill:var(--ink)}
+.who text{font-size:10px;font-weight:600;fill:var(--table);letter-spacing:0}
+.who-line{fill:none;stroke-width:calc(1.3px * var(--weight));stroke-dasharray:calc(5px * var(--weight)) calc(4px * var(--weight))}
+.who-line-agent{stroke:var(--agent)}.who-line-critic{stroke:var(--critic)}.who-line-auditor{stroke:var(--auditor)}
+.st-line{fill:none;stroke-width:calc(1.2px * var(--weight))}.st-good-line{stroke:var(--good)}.st-fault-line{stroke:var(--fault)}
+text.st-good{fill:var(--good);font-weight:600}text.st-fault{fill:var(--fault);font-weight:600}
+/* lettering inside a small drawing of the canvas is sized with the drawing, not with the screen */
+text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.ann-key.fixed{font-size:11.5px}text.on-ink{fill:var(--table)}
+/* A scene with one drawing to a chapter: stacked, each shown during its own stage and leaving as the next begins
+   (the same 0.02 of the next stage's progress over which the words leave: assets/words.js). */
+.scene-plate.multi{display:grid}
+.is-live .scene-plate.multi>.frame-of{grid-area:1/1;min-width:0;min-height:0;display:grid;place-items:center;
+  opacity:min(clamp(0, (var(--p) - var(--f)) * 1000 + 1, 1), clamp(0, 1 - (var(--p) - var(--f) - 1) / .02, 1))}
+.frame-of>div{width:100%;height:100%;min-height:0}
+.is-live .frame-no{display:none}
+.scene-wrap:not(.is-live) .scene-plate.multi{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:32px 24px}
+.scene-wrap:not(.is-live) .frame-no{display:block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.75rem;letter-spacing:.12em;color:var(--ink-3);margin-bottom:8px}
+
+/* ---------- What sets ARCY apart: ten claims, each a small drawn plate with its sourced sentence ---------- */
+.apart{max-width:1360px;margin:0 auto;padding:clamp(72px,14vh,160px) calc(var(--gutter) + 6px)}
+.sec-body .apart{padding:0;max-width:none}
+.apart-head{max-width:46rem;margin-bottom:clamp(40px,8vh,88px)}
+.apart-head h2{font-size:clamp(36px,5vw,76px);line-height:1.04;margin:0 0 18px;text-wrap:balance}
+:lang(ar) .apart-head h2{line-height:1.3}
+.apart-head p{color:var(--ink-2);font-size:clamp(17px,1.4vw,21px);max-width:36rem;margin:0}
+.apart-list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(40px,6vh,72px) clamp(24px,4vw,64px);grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.apart-item{border-top:1px solid var(--ink);padding:18px 0 0;border-bottom:0}
+.prose .apart-item:last-child{border-bottom:0}
+.apart-plate{margin:0 0 20px;aspect-ratio:7/5;display:grid;place-items:center}
+.apart-plate .plate-svg{width:100%;height:100%;max-height:none}
+.apart-item .sheet-no{margin:0 0 6px}
+.apart-item h3{font-family:var(--font-display);font-weight:500;font-size:clamp(22px,2vw,28px);line-height:1.2;margin:0 0 8px;text-wrap:balance}
+:lang(ar) .apart-item h3{line-height:1.45}
+.apart-item p{margin:0;color:var(--ink-2);font-size:.9375rem;line-height:1.65;max-width:30rem}
+.apart-item .num,.apart-item [data-src]{color:var(--ink);font-weight:600}
+.apart-note{margin:clamp(32px,6vh,56px) 0 0;font-size:.75rem;color:var(--ink-3)}
+
+/* ---------- Forms: the investors' contact form and the launch list. Hairlines, one ink button, nothing else. ---------- */
+.form{max-width:var(--measure-text);margin:28px 0 0}
+.form fieldset{border:0;margin:0;padding:0;display:grid;gap:18px;min-width:0}
+.form fieldset:disabled{opacity:.55}
+.field{display:grid;gap:6px}
+.field label{font-size:var(--t-s);color:var(--ink-2);font-weight:600}
+.field :is(input:not([type=checkbox]),textarea,select){font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--field-edge);border-radius:var(--r-s);padding:10px 12px;min-height:var(--h-touch);width:100%}
+.field textarea{resize:vertical;line-height:1.6}
+.field.check{grid-template-columns:auto 1fr;align-items:start;gap:12px}
+.field.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--ink)}
+.field.check label{font-weight:400;line-height:1.6}
+.send{justify-self:start;font:inherit;font-weight:600;color:var(--on-ink);background:var(--ink);border:0;border-radius:var(--r-s);min-height:var(--h-touch);padding:0 22px;cursor:pointer}
+.form fieldset:disabled .send{cursor:not-allowed}
+.sec-body>.form,.sec-body>.status{margin-top:0}
+.close-list{margin-top:18px;display:grid;gap:4px;justify-items:center}
+.close-list .muted{max-width:30rem}
+.form .status{margin:0 0 18px}

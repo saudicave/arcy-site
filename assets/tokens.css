@@ -1,0 +1,54 @@
+/* Copied from ARCY-Official public/tokens.css at commit 15c611c (2026-11-24); only font URLs rewritten to fonts/. Change it there first, then copy. */
+/* The shared foundation for Studio, account, legal and /brand/. Studio layout and canvas rules live in studio.css.
+   See docs/brand/SYSTEM.md for ownership and docs/review/STUDIO_MONOCHROME_SYSTEM_2026-11-20.md for colour measurements. */
+@font-face{font-family:Studio;src:url('fonts/arabic.woff2') format('woff2');font-weight:400;font-display:swap;size-adjust:106%;ascent-override:95%;descent-override:25%;line-gap-override:0%;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:Studio;src:url('fonts/arabic-bold.woff') format('woff');font-weight:600 700;font-display:swap;size-adjust:106%;ascent-override:95%;descent-override:25%;line-gap-override:0%;unicode-range:U+0600-06FF,U+0750-077F,U+0870-08FF,U+FB50-FDFF,U+FE70-FEFF}
+@font-face{font-family:Studio;src:url('fonts/latin.woff') format('woff');font-weight:400;font-display:swap;ascent-override:95%;descent-override:25%;line-gap-override:0%;unicode-range:U+0000-024F,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2248,U+2264-2265}
+@font-face{font-family:Studio;src:url('fonts/latin-bold.woff') format('woff');font-weight:600 700;font-display:swap;ascent-override:95%;descent-override:25%;line-gap-override:0%;unicode-range:U+0000-024F,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2190-2193,U+2212,U+2248,U+2264-2265}
+/* The display face: Markazi Text (SIL OFL 1.1, no reserved font name; public/markazi-OFL.txt), the official google/fonts
+   variable file subset to Arabic and Latin, weights 400 to 700, 80 KB. Headings and brand moments only. */
+@font-face{font-family:'Markazi Text';src:url('fonts/markazi.woff') format('woff');font-weight:400 700;font-display:swap}
+:root{
+  color-scheme:light dark;
+  /* Surfaces: the canvas brightest, docked panels one step dimmer, what is raised */
+  --table:light-dark(#FBFBFD,#1C1C1E); --surface:light-dark(#FFFFFF,#2C2C2E); --surface-2:light-dark(#FFFFFF,#1C1C1E);
+  --panel:light-dark(#F5F5F7,#121214);
+  /* Lines and fills */
+  --line:light-dark(#E5E5EA,#38383A); --line-2:light-dark(#D2D2D7,#48484A); --field-edge:light-dark(#86868B,#8E8E93);
+  --fill:light-dark(rgb(0 0 0 / .04),rgb(255 255 255 / .06));
+  --fill-2:light-dark(rgb(0 0 0 / .08),rgb(255 255 255 / .1)); --mark:#8E8E93;
+  --grid:light-dark(rgb(0 0 0 / .025),rgb(255 255 255 / .025));
+  --backdrop:light-dark(rgb(0 0 0 / .3),rgb(0 0 0 / .62));
+  /* Ink */
+  --ink:light-dark(#1D1D1F,#F5F5F7); --ink-2:light-dark(#424245,#D1D1D6); --ink-3:light-dark(#636366,#AEAEB2);
+  --on-ink:light-dark(#FFFFFF,#000000);
+  /* Who works: each agent its own colour, as collaborators on a shared canvas; helpers take ARCY's */
+  --agent:light-dark(#7B2FF7,#B794FF); --agent-wash:light-dark(rgb(123 47 247 / .08),rgb(183 148 255 / .14));
+  --critic:light-dark(#B45309,#FFB454); --auditor:light-dark(#0A7A55,#5EDBA5);
+  /* State: a word, a mark and its colour */
+  --good:light-dark(#25683F,#62C48A); --good-wash:light-dark(rgb(37 104 63 / .1),rgb(98 196 138 / .15));
+  --caution:light-dark(#8A5207,#EDBB6E); --caution-wash:light-dark(rgb(138 82 7 / .1),rgb(237 187 110 / .15));
+  --fault:light-dark(#C4161C,#FF6961); --fault-wash:light-dark(#FBEAEA,#3A1A19);
+  /* Space, type, radius, heights */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px; --s7:48px; --t-xs:.8125rem; --t-s:.875rem;
+  --t-m:1rem; --t-l:1.125rem; --t-xl:1.375rem; --lh-ui:1.35; --lh-snug:1.5; --lh-prose:1.7; --measure:680px;
+  --icon:16px; --r-xs:2px; --r-s:4px; --r-m:6px; --r-l:8px; --h-control:32px; --h-field:40px; --h-touch:44px;
+  --h-head:48px;
+  /* Depth: a shadow only on what floats */
+  --shade:light-dark(rgb(0 0 0 / .06),rgb(0 0 0 / .5)); --shade-2:light-dark(rgb(0 0 0 / .12),rgb(0 0 0 / .7));
+  --e1:0 1px 2px var(--shade),0 4px 13px var(--shade); --e2:0 2px 8px var(--shade),0 13px 34px var(--shade-2);
+  --e3:0 8px 21px var(--shade),0 34px 89px var(--shade-2);
+  /* Motion: one easing, three durations, one loop (the agent's working mark); no sound anywhere */
+  --ease:cubic-bezier(.32,.72,0,1); --d-fast:.12s; --d-open:.24s; --d-move:.42s; --d-loop:1.4s;
+  /* The state marks, as masks */
+  --mark-caution:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4 3 19.5h18L12 4Z'/%3E%3Cpath d='M12 10v4.5M12 17.2v.1'/%3E%3C/svg%3E");
+  --mark-pass:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12.5 4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+  --mark-fail:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='m6 6 12 12M18 6 6 18'/%3E%3C/svg%3E");
+  /* Faces: text in the Studio pair (Noto Sans Arabic with Noto Sans, OFL, self-hosted); the display face for headings and
+     brand moments only (Markazi Text, OFL, self-hosted) */
+  --font-text:Studio,system-ui,-apple-system,'Segoe UI',sans-serif; --font-display:'Markazi Text',Georgia,serif;
+  font-family:var(--font-text); font-synthesis:weight; color:var(--ink); background:var(--table);
+}
+:root[data-theme=light]{color-scheme:light}
+:root[data-theme=dark]{color-scheme:dark}
+@media (prefers-reduced-motion:reduce){:root{--d-fast:0s;--d-open:0s;--d-move:0s}}

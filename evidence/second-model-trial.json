@@ -1,0 +1,190 @@
+{
+ "note": "Trimmed from the product record in benchmarks/arcy-bench/results/ (the second-provider run of 2026-11-24, a compatible route with a thinking model; one run per task). Kept: task id and name, pass, steps, failed steps, seconds, how the run stopped, and whether the provider refused the request (its error carried a 400). Removed: costs, the provider's and the model's names, and the error texts that carry them. The counts are computed from the rows.",
+ "date": "2026-11-24",
+ "before_fix": {
+  "commit": "15c611c",
+  "tasks": 8,
+  "passed": 4,
+  "refused_by_provider": 6,
+  "results": [
+   {
+    "id": "c72",
+    "name": "two land listings recorded and priced, never advised",
+    "passed": true,
+    "steps": 2,
+    "failed": 0,
+    "seconds": 20,
+    "stopped": "failed",
+    "refused_by_provider": true
+   },
+   {
+    "id": "12",
+    "name": "one planted violation",
+    "passed": false,
+    "steps": 6,
+    "failed": 0,
+    "seconds": 86,
+    "stopped": "failed",
+    "refused_by_provider": true
+   },
+   {
+    "id": "c28",
+    "name": "which rules apply to a villa in Riyadh, and one limit",
+    "passed": false,
+    "steps": 2,
+    "failed": 0,
+    "seconds": 30,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c50",
+    "name": "a review calibrated on past reviewers (invented store)",
+    "passed": true,
+    "steps": 20,
+    "failed": 0,
+    "seconds": 323,
+    "stopped": "cost_limit",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c66",
+    "name": "a bill of quantities from a given flat",
+    "passed": true,
+    "steps": 1,
+    "failed": 0,
+    "seconds": 11,
+    "stopped": "failed",
+    "refused_by_provider": true
+   },
+   {
+    "id": "c64",
+    "name": "daylight per room of a given flat",
+    "passed": true,
+    "steps": 1,
+    "failed": 0,
+    "seconds": 4,
+    "stopped": "failed",
+    "refused_by_provider": true
+   },
+   {
+    "id": "c30",
+    "name": "a two-storey house built from a short request",
+    "passed": false,
+    "steps": 1,
+    "failed": 1,
+    "seconds": 106,
+    "stopped": "failed",
+    "refused_by_provider": true
+   },
+   {
+    "id": "c42",
+    "name": "three options, measured, compared and critiqued",
+    "passed": false,
+    "steps": 6,
+    "failed": 0,
+    "seconds": 272,
+    "stopped": "failed",
+    "refused_by_provider": true
+   }
+  ]
+ },
+ "after_fix": {
+  "commit": "961daa3",
+  "tasks": 9,
+  "passed": 6,
+  "refused_by_provider": 0,
+  "results": [
+   {
+    "id": "11",
+    "name": "a guideline question with its page",
+    "passed": true,
+    "steps": 1,
+    "failed": 0,
+    "seconds": 9,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c72",
+    "name": "two land listings recorded and priced, never advised",
+    "passed": true,
+    "steps": 6,
+    "failed": 0,
+    "seconds": 103,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "12",
+    "name": "one planted violation",
+    "passed": true,
+    "steps": 11,
+    "failed": 0,
+    "seconds": 263,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c28",
+    "name": "which rules apply to a villa in Riyadh, and one limit",
+    "passed": false,
+    "steps": 3,
+    "failed": 0,
+    "seconds": 47,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c50",
+    "name": "a review calibrated on past reviewers (invented store)",
+    "passed": true,
+    "steps": 14,
+    "failed": 0,
+    "seconds": 170,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c66",
+    "name": "a bill of quantities from a given flat",
+    "passed": true,
+    "steps": 7,
+    "failed": 0,
+    "seconds": 177,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c64",
+    "name": "daylight per room of a given flat",
+    "passed": true,
+    "steps": 3,
+    "failed": 0,
+    "seconds": 44,
+    "stopped": "completed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c30",
+    "name": "a two-storey house built from a short request",
+    "passed": false,
+    "steps": 4,
+    "failed": 1,
+    "seconds": 420,
+    "stopped": "awaiting_person>failed",
+    "refused_by_provider": false
+   },
+   {
+    "id": "c42",
+    "name": "three options, measured, compared and critiqued",
+    "passed": false,
+    "steps": 12,
+    "failed": 0,
+    "seconds": 793,
+    "stopped": "cost_limit",
+    "refused_by_provider": false
+   }
+  ]
+ }
+}

@@ -1,0 +1,45 @@
+{
+  "_about": "What the result files cannot say by themselves: the owner's verdict on the outputs, the causes found and the limits. Every entry names its source. Copied by hand from data/RESULTS-section-20.md (ARCY-Official benchmarks/arcy-bench/RESULTS.md, section 20, commit 15c611c). Numbers written here must appear in that source. verdict_score, verdict_scale and verdict_target restate \"none above 1 of 4\" and \"3 is what a large consultancy would show a client\" from the same section.",
+  "source": "data/RESULTS-section-20.md",
+  "verdicts": [
+    {
+      "date": "2026-11-23",
+      "after": "stage2-baseline-2026-11-23",
+      "ar": "حكم المالك على المخرجات بعد أن رآها كلها: لا شيء فوق 1 من 4، على مقياس تعني فيه 3 ما يعرضه مكتب استشاري كبير على عميله. نجاح المهمة في هذا الاختبار يعني أن القدرة استُعملت صحيحاً، لا أن المخرج جيد.",
+      "en": "The owner's verdict after looking at every output: none above 1 of 4, on a scale where 3 is what a large consultancy would show a client. A pass in this suite says a capability was used correctly, not that its output is good."
+    }
+  ],
+  "causes": [
+    {
+      "task": "11",
+      "ar": "أرسل النموذج معاملاً فارغاً بجانب سؤال بسيط، فأجابت كل عمليات البحث الـ31 بأن المعامل غير موجود.",
+      "en": "The model sent an empty parameter beside a plain question; all 31 lookups answered that the parameter was not found.",
+      "fix": "089ab92"
+    },
+    {
+      "task": "c70",
+      "ar": "أرقام لا يُظهرها الرسم جاءت نصوصاً فارغة وأصفاراً فرُفضت.",
+      "en": "Figures the sketch does not show came as empty texts and zeros and were refused.",
+      "fix": "12286da"
+    },
+    {
+      "task": "c72",
+      "ar": "رُفض عرض أرض لا عنوان له.",
+      "en": "A listing with no address was refused.",
+      "fix": "19cb481"
+    },
+    {
+      "task": "c40",
+      "ar": "قُرئ دليل القطعة الواحدة ولم يُصنع نموذج الموقع.",
+      "en": "The one-plot guide was read and the site model never made.",
+      "fix": "096dbb5"
+    }
+  ],
+  "limits": {
+    "ar": "تشغيل واحد لكل مهمة، وعدد صغير: أربع مهام بعد الإصلاح تقول اتجاهاً لا أكثر (اختبار McNemar: p = 0.25). الأزمنة قيست على جهاز مشغول فهي حدود عليا. لم يُقس البحث والذاكرة وسجلات المشاريع وغيرها. مهمة c40 ما زالت تفشل.",
+    "en": "One run per task and a small number: four tasks after the fixes say a direction and no more (McNemar p = 0.25). Times were taken on a loaded machine and are upper bounds. Research, memory, project records and others were not measured. Task c40 still fails."
+  },
+  "verdict_score": 1,
+  "verdict_scale": 4,
+  "verdict_target": 3
+}

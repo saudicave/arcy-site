@@ -1,0 +1,750 @@
+{
+ "summary": {
+  "label": "stage2-baseline-2026-11-23",
+  "model": "openai/gpt-6.2-sol",
+  "scorer": "2026-11-20.2",
+  "cap_usd": "0.40 (pilot, batch 1) and 1.00 (batch 2)",
+  "budget_usd": 30,
+  "tasks": 19,
+  "passed": 11,
+  "pass_rate": "58% (n=19)",
+  "criteria": 57,
+  "criteria_met": 46,
+  "steps": 205,
+  "failed": 25,
+  "spent_usd": 4.647,
+  "note": "The three paid runs of 2026-11-23 joined into one baseline for the fix cycles (PROJECT-PLAN.md of 2026-11-24). One run per task; times were taken on a loaded machine and are upper bounds. Owner verdict on the outputs: none above 1 of 4. Answers, trajectories and session folders are not kept here (repository size): they are in .sites-runtime/evidence/2026-11-23/stage2/ on the owner machine.",
+  "at": "2026-11-23T20:10:51.417Z"
+ },
+ "results": [
+  {
+   "id": "c11",
+   "name": "one figure found in a guide, with its page",
+   "passed": true,
+   "criteria": {
+    "uses document.search": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "document.search (or document.read) ran successfully"
+    },
+    "value_right": {
+     "ok": true,
+     "value": [
+      1.2,
+      1.2
+     ],
+     "want": "1.2 m stated"
+    },
+    "page_right": {
+     "ok": true,
+     "value": [
+      2
+     ],
+     "want": "page 2 cited"
+    }
+   },
+   "cost_usd": 0.095,
+   "seconds": 14,
+   "steps": 2,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "document"
+  },
+  {
+   "id": "c74",
+   "name": "the surroundings of a location, asked in Arabic",
+   "passed": true,
+   "criteria": {
+    "uses site.context": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "site.context ran successfully"
+    },
+    "at_the_point": {
+     "ok": true,
+     "value": [
+      "24.8270, 46.6390"
+     ],
+     "want": "measured at 24.827, 46.639"
+    },
+    "measures_kept": {
+     "ok": true,
+     "value": [
+      "o1"
+     ],
+     "want": "the measures kept as a file"
+    },
+    "walking_said": {
+     "ok": true,
+     "value": null,
+     "want": "a walking time or distance stated"
+    }
+   },
+   "cost_usd": 0.1463,
+   "seconds": 90,
+   "steps": 2,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c72",
+   "name": "two land listings recorded and priced, never advised",
+   "passed": false,
+   "criteria": {
+    "uses property.study": {
+     "ok": true,
+     "value": {
+      "ran": 3,
+      "failed": 0
+     },
+     "want": "property.study ran successfully"
+    },
+    "listings_kept": {
+     "ok": false,
+     "value": [],
+     "want": "2 listings kept"
+    },
+    "price_per_m2": {
+     "ok": null,
+     "value": null,
+     "want": "SAR 3500 per m2 for the first"
+    },
+    "no_advice": {
+     "ok": true,
+     "value": null,
+     "want": "no advice to buy"
+    }
+   },
+   "cost_usd": 0.068,
+   "seconds": 49,
+   "steps": 7,
+   "failed": 1,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c40",
+   "name": "a site of four plots with their limits",
+   "passed": false,
+   "criteria": {
+    "uses site.model": {
+     "ok": false,
+     "value": {
+      "ran": 0,
+      "failed": 0
+     },
+     "want": "site.model ran successfully"
+    },
+    "site_linked": {
+     "ok": null,
+     "value": [],
+     "want": "the site model was linked (its plots computed)"
+    }
+   },
+   "cost_usd": 0.2441,
+   "seconds": 130,
+   "steps": 10,
+   "failed": 2,
+   "model": "gpt-6.2-sol",
+   "stopped": "awaiting_person>completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c70",
+   "name": "a plot recorded from its sketch (picture)",
+   "passed": false,
+   "criteria": {
+    "uses plot.record": {
+     "ok": false,
+     "value": {
+      "ran": 0,
+      "failed": 5
+     },
+     "want": "plot.record ran successfully"
+    },
+    "area_right": {
+     "ok": false,
+     "value": "no plot recorded",
+     "want": "the plot's area 600 m2 within 1%"
+    },
+    "sides_right": {
+     "ok": null,
+     "value": [],
+     "want": "four sides 20, 30, 20, 30 m as printed"
+    }
+   },
+   "cost_usd": 0.1547,
+   "seconds": 95,
+   "steps": 7,
+   "failed": 5,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "picture"
+  },
+  {
+   "id": "12",
+   "name": "one planted violation",
+   "passed": true,
+   "criteria": {
+    "violation_named": {
+     "ok": true,
+     "value": "ارتداد الامامي",
+     "want": "the answer names the front setback as a violation, and does not deny it"
+    },
+    "found_within_2_checks": {
+     "ok": true,
+     "value": {
+      "regulation_checks": 2,
+      "found_at": 2
+     },
+     "want": "N.villa.setback.front FAIL in the first or second regulation.check"
+    }
+   },
+   "cost_usd": 0.1583,
+   "seconds": 51,
+   "steps": 12,
+   "failed": 1,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c28",
+   "name": "which rules apply to a villa in Riyadh, and one limit",
+   "passed": false,
+   "criteria": {
+    "uses requirements.applicable": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "requirements.applicable ran successfully"
+    },
+    "uses requirements.find": {
+     "ok": false,
+     "value": {
+      "ran": 0,
+      "failed": 0
+     },
+     "want": "requirements.find ran successfully"
+    },
+    "country_sa": {
+     "ok": true,
+     "value": [
+      "sa"
+     ],
+     "want": "asked for Saudi Arabia (sa)"
+    },
+    "coverage_given": {
+     "ok": true,
+     "value": [
+      75,
+      75,
+      70,
+      75,
+      75
+     ],
+     "want": "a building coverage stated as a percentage"
+    }
+   },
+   "cost_usd": 0.0425,
+   "seconds": 22,
+   "steps": 3,
+   "failed": 1,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c50",
+   "name": "a review calibrated on past reviewers (invented store)",
+   "passed": true,
+   "criteria": {
+    "uses review.precedents": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "review.precedents ran successfully"
+    },
+    "uses review.checklist": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "review.checklist ran successfully"
+    },
+    "uses review.record": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "review.record ran successfully"
+    },
+    "precedents_before_verdicts": {
+     "ok": true,
+     "value": {
+      "looked_at": 7,
+      "recorded_at": 14
+     },
+     "want": "past reviews consulted before the review was recorded"
+    },
+    "checklist_rows": {
+     "ok": true,
+     "value": 1,
+     "want": "a row rests on the reviewers' standard observations"
+    }
+   },
+   "cost_usd": 0.2271,
+   "seconds": 138,
+   "steps": 14,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "11",
+   "name": "a guideline question with its page",
+   "passed": false,
+   "criteria": {
+    "no_schema_failures": {
+     "ok": true,
+     "value": 0,
+     "want": "0 calls refused by a schema"
+    },
+    "ratio_right": {
+     "ok": false,
+     "value": [],
+     "want": "the answer gives 10 and 15 percent"
+    },
+    "page_cited_in_data": {
+     "ok": false,
+     "value": {
+      "cited": [],
+      "in_data": [
+       29,
+       48,
+       5
+      ]
+     },
+     "want": "a cited page among 29, 48, 5"
+    }
+   },
+   "cost_usd": 0.3172,
+   "seconds": 104,
+   "steps": 33,
+   "failed": 1,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c19",
+   "name": "a review, a repair, and the re-check named or run",
+   "passed": false,
+   "criteria": {
+    "uses review.record": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 2
+     },
+     "want": "review.record ran successfully"
+    },
+    "uses model.from_ifc": {
+     "ok": true,
+     "value": {
+      "ran": 2,
+      "failed": 0
+     },
+     "want": "model.from_ifc (or compute.run) ran successfully"
+    },
+    "first_review_fails_parapet": {
+     "ok": false,
+     "value": [
+      "cannot_judge"
+     ],
+     "want": "the first review finds no parapet (non-compliant)"
+    },
+    "recheck": {
+     "ok": false,
+     "value": {
+      "reviews": 1,
+      "rechecks": 0
+     },
+     "want": "the second review is a re-check, or the server named the re-check to run (S8 gate)"
+    },
+    "parapet_built": {
+     "ok": true,
+     "value": {
+      "cover": 1,
+      "middle": 0,
+      "height_m": 1.1,
+      "building_kept": true
+     },
+     "want": "material 0.8 to 1.3 m high round 90% of the roof edge, the roof open inside it, on the given building"
+    }
+   },
+   "cost_usd": 0.3509,
+   "seconds": 154,
+   "steps": 18,
+   "failed": 2,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed>cost_limit",
+   "style": "follow-up"
+  },
+  {
+   "id": "c30",
+   "name": "a two-storey house built from a short request",
+   "passed": true,
+   "criteria": {
+    "uses model.build": {
+     "ok": true,
+     "value": {
+      "ran": 0,
+      "failed": 0,
+      "stood_in": "compute.run"
+     },
+     "want": "model.build (or compute.run) ran successfully"
+    },
+    "house_as_asked": {
+     "ok": true,
+     "value": {
+      "readable": true,
+      "problems": 0,
+      "storeys": 2,
+      "size_m": [
+       10,
+       12
+      ],
+      "spaces": 13,
+      "doors": 12,
+      "windows": 17
+     },
+     "want": "an IFC that opens: 2 storeys, about 10 x 12 m"
+    },
+    "accuracy_gate": {
+     "ok": true,
+     "value": [
+      "draft (not checked)",
+      "draft (not checked)"
+     ],
+     "want": "every recorded model carries its accuracy check, or is a DRAFT marked not checked"
+    }
+   },
+   "cost_usd": 0.816,
+   "seconds": 372,
+   "steps": 20,
+   "failed": 5,
+   "model": "gpt-6.2-sol",
+   "stopped": "awaiting_person>completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c36",
+   "name": "a render of a given house",
+   "passed": true,
+   "criteria": {
+    "uses model.render": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "model.render ran successfully"
+    },
+    "render_made": {
+     "ok": true,
+     "value": 2,
+     "want": "a render in the session"
+    }
+   },
+   "cost_usd": 0.2207,
+   "seconds": 257,
+   "steps": 8,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c66",
+   "name": "a bill of quantities from a given flat",
+   "passed": true,
+   "criteria": {
+    "uses model.quantities": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "model.quantities ran successfully"
+    },
+    "bill_file": {
+     "ok": true,
+     "value": [
+      "q1-boq.csv",
+      "q1-boq.pdf",
+      "q1-finishes-by-room.csv",
+      "q1-rates-template.csv"
+     ],
+     "want": "boq.csv among the outputs"
+    }
+   },
+   "cost_usd": 0.0302,
+   "seconds": 19,
+   "steps": 1,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c64",
+   "name": "daylight per room of a given flat",
+   "passed": true,
+   "criteria": {
+    "uses environment.simulate": {
+     "ok": null,
+     "value": "environment.simulate was not offered in this run",
+     "want": "environment.simulate ran successfully"
+    },
+    "results_kept": {
+     "ok": null,
+     "value": 0,
+     "want": "the simulation's results kept with the session"
+    },
+    "rooms_answered": {
+     "ok": null,
+     "value": null,
+     "want": "three or more rooms given their daylight"
+    }
+   },
+   "cost_usd": 0.1188,
+   "seconds": 56,
+   "steps": 6,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c42",
+   "name": "three options, measured, compared and critiqued",
+   "passed": false,
+   "criteria": {
+    "uses design.option": {
+     "ok": true,
+     "value": {
+      "ran": 7,
+      "failed": 0
+     },
+     "want": "design.option ran successfully"
+    },
+    "uses design.compare": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "design.compare ran successfully"
+    },
+    "uses design.critique": {
+     "ok": true,
+     "value": {
+      "ran": 2,
+      "failed": 0
+     },
+     "want": "design.critique ran successfully"
+    },
+    "uses situation.confirm": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "situation.confirm ran successfully"
+    },
+    "uses plan.update": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "plan.update ran successfully"
+    },
+    "three_options": {
+     "ok": true,
+     "value": 3,
+     "want": "3 or more design.option records"
+    },
+    "compared": {
+     "ok": true,
+     "value": 1,
+     "want": "design.compare ran"
+    },
+    "understanding_first": {
+     "ok": true,
+     "value": {
+      "asked": 0,
+      "making": 7,
+      "held": true
+     },
+     "want": "the understanding set out before the first thing was made"
+    },
+    "plan_kept_current": {
+     "ok": false,
+     "value": 1,
+     "want": "plan.update more than once"
+    }
+   },
+   "cost_usd": 0.7157,
+   "seconds": 407,
+   "steps": 25,
+   "failed": 3,
+   "model": "gpt-6.2-sol",
+   "stopped": "awaiting_person>completed",
+   "style": "en-brief"
+  },
+  {
+   "id": "c38",
+   "name": "a parametric facade from a short request",
+   "passed": false,
+   "criteria": {
+    "uses design.facade": {
+     "ok": false,
+     "value": {
+      "ran": 0,
+      "failed": 0
+     },
+     "want": "design.facade ran successfully"
+    },
+    "facade_file": {
+     "ok": null,
+     "value": 0,
+     "want": "an IFC of the facade"
+    }
+   },
+   "cost_usd": 0.7281,
+   "seconds": 569,
+   "steps": 28,
+   "failed": 3,
+   "model": "gpt-6.2-sol",
+   "stopped": "awaiting_person>completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c10",
+   "name": "a client board from two uploads",
+   "passed": true,
+   "criteria": {
+    "uses present.board": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 1
+     },
+     "want": "present.board ran successfully"
+    },
+    "board_file": {
+     "ok": true,
+     "value": [
+      "board-574bbe71.html",
+      "board-574bbe71.pdf"
+     ],
+     "want": "an HTML or PDF board was made"
+    },
+    "both_pictures": {
+     "ok": true,
+     "value": 1,
+     "want": "the board shows both uploads"
+    }
+   },
+   "cost_usd": 0.0392,
+   "seconds": 17,
+   "steps": 2,
+   "failed": 1,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "picture"
+  },
+  {
+   "id": "c05",
+   "name": "a picture generated, its fidelity record present",
+   "passed": true,
+   "criteria": {
+    "uses image.generate": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "image.generate ran successfully"
+    },
+    "picture_made": {
+     "ok": true,
+     "value": 1,
+     "want": "a generated picture in the session"
+    },
+    "fidelity_said": {
+     "ok": true,
+     "value": [
+      [
+       "not_measured"
+      ]
+     ],
+     "want": "each generated picture says whether its fidelity was measured (S6 gate)"
+    }
+   },
+   "cost_usd": 0.0827,
+   "seconds": 52,
+   "steps": 2,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c68",
+   "name": "a walkthrough film of a given house",
+   "passed": true,
+   "criteria": {
+    "uses model.film": {
+     "ok": true,
+     "value": {
+      "ran": 2,
+      "failed": 0
+     },
+     "want": "model.film ran successfully"
+    },
+    "film_made": {
+     "ok": true,
+     "value": 2,
+     "want": "an MP4 film among the outputs"
+    }
+   },
+   "cost_usd": 0.0915,
+   "seconds": 1008,
+   "steps": 5,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  }
+ ]
+}

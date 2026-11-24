@@ -1,0 +1,692 @@
+{
+ "summary": {
+  "label": "b1-after-096dbb5",
+  "model": "openai/gpt-6.2-sol",
+  "scorer": "2026-11-20.2",
+  "cap_usd": 1,
+  "budget_usd": 3,
+  "tasks": 4,
+  "passed": 3,
+  "pass_rate": "75% (30-95%, n=4)",
+  "criteria": 11,
+  "criteria_met": 10,
+  "steps": 23,
+  "failed": 3,
+  "step_failure_rate": 0.13,
+  "failure_classes": {
+   "wrong API (attribute, argument, result key)": 1,
+   "library validation (ValueError)": 1,
+   "other (the program's own bug)": 1
+  },
+  "spent_usd": 0.6951,
+  "invalid": 0,
+  "skipped": 0,
+  "not_rescored": 0,
+  "at": "2026-11-24T07:34:01.152Z",
+  "coverage": [
+   {
+    "capability": "agent.delegate",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "capture.reconstruct",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "compute.run",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": [
+     "c72",
+     "c40"
+    ]
+   },
+   {
+    "capability": "critique.note",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "design.compare",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "design.critique",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "design.facade",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "design.option",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "document.fetch",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "document.outline",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "document.read",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "document.remember",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "document.search",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "environment.simulate",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "guideline.lookup",
+    "tasks": [
+     "11"
+    ],
+    "styles": [
+     "ar-short"
+    ],
+    "exercised_in": [
+     "11"
+    ]
+   },
+   {
+    "capability": "image.compare",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.edit",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.fetch",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.find",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.generate",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.locate",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.mark",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.measure",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "image.view",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "memory.remember",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "memory.search",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": [
+     "c40"
+    ]
+   },
+   {
+    "capability": "model.build",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "model.film",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "model.from_ifc",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "model.quantities",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "model.rebuild",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "model.render",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "papers.search",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "plan.update",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": [
+     "c72",
+     "c40"
+    ]
+   },
+   {
+    "capability": "plot.record",
+    "tasks": [
+     "c70"
+    ],
+    "styles": [
+     "picture"
+    ],
+    "exercised_in": [
+     "c70"
+    ]
+   },
+   {
+    "capability": "present.board",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "project.read",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "project.record",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "property.study",
+    "tasks": [
+     "c72"
+    ],
+    "styles": [
+     "ar-short"
+    ],
+    "exercised_in": [
+     "c72"
+    ]
+   },
+   {
+    "capability": "regulation.check",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "requirements.applicable",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "requirements.find",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "requirements.propose",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "research.claim",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "review.checklist",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "review.precedents",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "review.record",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "site.context",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "site.model",
+    "tasks": [
+     "c40"
+    ],
+    "styles": [
+     "ar-short"
+    ],
+    "exercised_in": []
+   },
+   {
+    "capability": "situation.confirm",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": [
+     "c40"
+    ]
+   },
+   {
+    "capability": "skill.read",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": [
+     "c70",
+     "c40"
+    ]
+   },
+   {
+    "capability": "tool.build",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "tool.find",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "tool.run",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "video.read",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": []
+   },
+   {
+    "capability": "web.research",
+    "tasks": [],
+    "styles": [],
+    "exercised_in": [
+     "c72"
+    ]
+   }
+  ],
+  "by_style": {
+   "ar-short": {
+    "tasks": 3,
+    "valid": 3,
+    "passed": 2,
+    "criteria": 8,
+    "criteria_met": 7,
+    "spent_usd": 0.6416,
+    "seconds": 197,
+    "usd_per_task": 0.2139
+   },
+   "picture": {
+    "tasks": 1,
+    "valid": 1,
+    "passed": 1,
+    "criteria": 3,
+    "criteria_met": 3,
+    "spent_usd": 0.0535,
+    "seconds": 25,
+    "usd_per_task": 0.0535
+   }
+  },
+  "calls": {
+   "tasks": 4,
+   "uses_right": 2,
+   "uses_missed": 1,
+   "uses_share": 0.667,
+   "unnecessary_calls": 3,
+   "unnecessary_per_task": 0.75,
+   "model_calls": 23,
+   "input_tokens_per_call": 43242,
+   "finds": 0,
+   "finds_per_request": 0,
+   "passed": 2,
+   "valid": 4,
+   "pass_rate": "50% (15-85%, n=4)",
+   "spent_usd": 0.6951
+  },
+  "chain": {
+   "totals": {
+    "sessions": 4,
+    "requests": 5,
+    "costUsd": 0.69,
+    "reached": {
+     "S0": 2,
+     "S1": 1,
+     "S2": 0,
+     "S3": 1,
+     "S4": 1,
+     "S5": 1,
+     "S6": 2,
+     "S7": 0,
+     "S8": 0,
+     "S9": 3
+    },
+    "S3": {
+     "ifc": 1,
+     "opens": 1,
+     "valid": 1
+    },
+    "S4": {
+     "checked": 1,
+     "without_errors": 1,
+     "errors": 0,
+     "warnings": 0,
+     "top_error_rules": {}
+    },
+    "S5": {
+     "drawing_files": 4,
+     "dxf_audited": 2,
+     "dxf_clean": 2,
+     "consistency_reports": 0
+    },
+    "S6": {
+     "pictures": 3,
+     "renders": 3,
+     "bound_to_model": 0,
+     "fidelity_measured": 0,
+     "fidelity_passed": 0
+    },
+    "S7": {
+     "reviews": 0,
+     "rows": 0,
+     "peer_reviews": 0,
+     "calibrated_rows": 0,
+     "checklist_rows": 0
+    },
+    "S8": {
+     "rechecks": 0,
+     "outcomes": {}
+    },
+    "S9": {
+     "exports": 9,
+     "missing_from_archive": 0
+    },
+    "S2": {
+     "options": 0,
+     "critiques": 0,
+     "different_ideas": {}
+    },
+    "full_chain_S3_S5_S6": 0,
+    "gates": {
+     "S5": {
+      "not_checked": 4
+     }
+    },
+    "reached_by_style": {
+     "ar-short": {
+      "S0": 2,
+      "S1": 1,
+      "S2": 0,
+      "S3": 0,
+      "S4": 0,
+      "S5": 1,
+      "S6": 1,
+      "S7": 0,
+      "S8": 0,
+      "S9": 2,
+      "sessions": 3
+     },
+     "picture": {
+      "S0": 0,
+      "S1": 0,
+      "S2": 0,
+      "S3": 1,
+      "S4": 1,
+      "S5": 0,
+      "S6": 1,
+      "S7": 0,
+      "S8": 0,
+      "S9": 1,
+      "sessions": 1
+     }
+    }
+   }
+  },
+  "rescored": "2026-11-24T07:34:37.683Z",
+  "note": "Cycle B1 of the project plan: the four tasks the fixes touch, rerun on 2026-11-24 after 096dbb5 and re-scored after the plot scorer was fixed. Against the stage 2 baseline: 3 of 4 pass, 0 of 4 then. One run per task. Sessions: .sites-runtime/evidence/2026-11-24/b1-after/ on the owner machine."
+ },
+ "results": [
+  {
+   "id": "11",
+   "name": "a guideline question with its page",
+   "passed": true,
+   "criteria": {
+    "no_schema_failures": {
+     "ok": true,
+     "value": 0,
+     "want": "0 calls refused by a schema"
+    },
+    "ratio_right": {
+     "ok": true,
+     "value": [
+      15,
+      10
+     ],
+     "want": "the answer gives 10 and 15 percent"
+    },
+    "page_cited_in_data": {
+     "ok": true,
+     "value": {
+      "cited": [
+       29,
+       5
+      ],
+      "in_data": [
+       29,
+       48,
+       5
+      ]
+     },
+     "want": "a cited page among 29, 48, 5"
+    }
+   },
+   "cost_usd": 0.0758,
+   "seconds": 11,
+   "steps": 1,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c70",
+   "name": "a plot recorded from its sketch (picture)",
+   "passed": true,
+   "criteria": {
+    "uses plot.record": {
+     "ok": true,
+     "value": {
+      "ran": 1,
+      "failed": 0
+     },
+     "want": "plot.record ran successfully"
+    },
+    "area_right": {
+     "ok": true,
+     "value": {
+      "stated": 600,
+      "computed": 600,
+      "check": "agrees"
+     },
+     "want": "the plot's area 600 m2 within 1%"
+    },
+    "sides_right": {
+     "ok": true,
+     "value": [
+      20,
+      30,
+      20,
+      30
+     ],
+     "want": "four sides 20, 30, 20, 30 m as printed"
+    }
+   },
+   "cost_usd": 0.0535,
+   "seconds": 25,
+   "steps": 2,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "picture"
+  },
+  {
+   "id": "c72",
+   "name": "two land listings recorded and priced, never advised",
+   "passed": true,
+   "criteria": {
+    "uses property.study": {
+     "ok": true,
+     "value": {
+      "ran": 3,
+      "failed": 0
+     },
+     "want": "property.study ran successfully"
+    },
+    "listings_kept": {
+     "ok": true,
+     "value": [
+      3500,
+      4000
+     ],
+     "want": "2 listings kept"
+    },
+    "price_per_m2": {
+     "ok": true,
+     "value": 3500,
+     "want": "SAR 3500 per m2 for the first"
+    },
+    "no_advice": {
+     "ok": true,
+     "value": null,
+     "want": "no advice to buy"
+    }
+   },
+   "cost_usd": 0.2865,
+   "seconds": 77,
+   "steps": 6,
+   "failed": 0,
+   "model": "gpt-6.2-sol",
+   "stopped": "completed",
+   "style": "ar-short"
+  },
+  {
+   "id": "c40",
+   "name": "a site of four plots with their limits",
+   "passed": false,
+   "criteria": {
+    "uses site.model": {
+     "ok": false,
+     "value": {
+      "ran": 0,
+      "failed": 0
+     },
+     "want": "site.model ran successfully"
+    },
+    "site_linked": {
+     "ok": null,
+     "value": [],
+     "want": "the site model was linked (its plots computed)"
+    }
+   },
+   "cost_usd": 0.2793,
+   "seconds": 109,
+   "steps": 14,
+   "failed": 3,
+   "model": "gpt-6.2-sol",
+   "stopped": "awaiting_person>completed",
+   "style": "ar-short"
+  }
+ ]
+}
