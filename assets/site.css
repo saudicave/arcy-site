@@ -527,3 +527,8 @@ text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.an
 .close-list{margin-top:18px;display:grid;gap:4px;justify-items:center}
 .close-list .muted{max-width:30rem}
 .form .status{margin:0 0 18px}
+/* Arabic letters join: any letter-spacing breaks the joining in Safari and can scramble the order of a label drawn in
+   SVG (the owner saw «سطح الأرض» as loose reversed letters on an iPhone). Arabic text is never tracked, and SVG
+   labels take their direction from their own words. Latin marks that are tracked by design keep it. */
+:lang(ar) :is(.ann,.ann-region-en,thead th,.title-block dt,.foot h2,.rsrc strong,.rsrc-h,p,li,td,span,b,strong,h1,h2,h3,h4,label,button,a){letter-spacing:0}
+:lang(ar) svg text{unicode-bidi:plaintext;letter-spacing:0}
