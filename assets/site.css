@@ -1,14 +1,17 @@
 /* ARCY company site. Builds on tokens.css (copied from the product, the one token root): greys, Markazi Text
    for display, the Studio text pair, one easing. Logical properties throughout so Arabic mirrors without overrides.
-   The device: every page is a drawing sheet (hairline frame, sheet number, title block); numbers are dimension
+   The device: every page is a drawing sheet (a sheet number, one line naming when it last changed); numbers are dimension
    chains; drawings use a draughtsman's line hierarchy. Thin, quiet, consistent. */
 
 :root{
   --gutter:clamp(16px,4.5vw,64px);
   --draw:cubic-bezier(.65,.05,.25,1);      /* slow, precise: the pen accelerates and settles */
-  --draw-t:2.2s;
+  --draw-t:1.4s;                            /* one line's draw; --pace compresses the reading-order delays (plates.mjs
+                                               writes up to about 4.5 s), so a plate is complete in about 3 s and a
+                                               visitor scrolling at reading speed never passes an empty frame */
+  --pace:.5;
   --measure-text:34rem;                     /* about 60 characters */
-  --rule:light-dark(#D2D2D7,#48484A);       /* decorative hairlines (frame, rules): not information */
+  --rule:light-dark(#D2D2D7,#48484A);       /* decorative hairlines (rules): not information */
   --line-ink:light-dark(#636366,#AEAEB2);   /* hairlines that carry meaning: 3:1 or better (see README) */
 }
 *{box-sizing:border-box}
@@ -22,12 +25,8 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82em;col
 .skip{position:absolute;inset-inline-start:16px;top:-80px;background:var(--ink);color:var(--on-ink);padding:10px 14px;border-radius:var(--r-m);z-index:20}
 .skip:focus{top:12px}
 .num{font-variant-numeric:tabular-nums lining-nums}
-
-/* The sheet: a hairline frame around the viewport, as on a drawing. */
-.frame{position:absolute;inset:10px;border:1px solid var(--rule);pointer-events:none;z-index:30}
-body{position:relative}
-@media (max-width:600px){.frame{inset:6px}}
-@media print{.frame{display:none}}
+/* an ISO date is read left to right in both languages: isolated, so an Arabic line never reverses 2026-11-24 */
+time{direction:ltr;unicode-bidi:isolate}
 
 /* Links: an underline that draws like a line, in the reading direction. */
 .top a,.foot a,.action,.sitemap a,.files a{text-decoration:none;background:linear-gradient(currentColor,currentColor) no-repeat;
@@ -65,7 +64,7 @@ h1,h2,h3,.lede,.pull,.figures strong{font-family:var(--font-display);font-weight
 .page h1{font-size:clamp(44px,6vw,88px);line-height:1;letter-spacing:-.015em;margin:0;text-wrap:balance}
 :lang(ar) .page h1,:lang(ar) .hero h1{line-height:1.2;letter-spacing:0}
 .lede{font-size:clamp(22px,2.2vw,30px);line-height:1.35;color:var(--ink-2);margin:24px 0 0;max-width:30ch;text-wrap:pretty}
-:lang(ar) .lede{line-height:1.6}
+:lang(ar) .lede{line-height:1.5}
 .prose{max-width:var(--measure-text)}
 .prose h2,.results h2{font-size:clamp(28px,2.6vw,36px);line-height:1.15;margin:2.2em 0 .5em}
 .prose h3,.results h3{font-family:var(--font-text);font-size:var(--t-m);font-weight:600;margin:1.8em 0 .4em}
@@ -129,12 +128,12 @@ h1,h2,h3,.lede,.pull,.figures strong{font-family:var(--font-display);font-weight
 /* Drawing: lines with pathLength=1 draw from 0; fills and annotations settle after. Only with JS and motion. */
 .js .plate:not(.in) [pathLength]{stroke-dasharray:1 1;stroke-dashoffset:1}
 .js .plate:not(.in) :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text){opacity:0}
-.js .plate.in [pathLength]{stroke-dasharray:1 1;stroke-dashoffset:0;transition:stroke-dashoffset var(--draw-t) var(--draw) var(--d,0s)}
-.js .plate.in :is(.w-beyond,.w-section,.w-target,.w-review){transition:opacity 1s var(--draw) var(--d,0s);stroke-dasharray:revert-layer}
+.js .plate.in [pathLength]{stroke-dasharray:1 1;stroke-dashoffset:0;transition:stroke-dashoffset var(--draw-t) var(--draw) calc(var(--d,0s) * var(--pace))}
+.js .plate.in :is(.w-beyond,.w-section,.w-target,.w-review){transition:opacity 1s var(--draw) calc(var(--d,0s) * var(--pace));stroke-dasharray:revert-layer}
 .js .plate.in .w-beyond{stroke-dasharray:4 3}.js .plate.in .w-section{stroke-dasharray:14 4 2 4}.js .plate.in .w-target{stroke-dasharray:3 3}.js .plate.in .w-review{stroke-dasharray:6 4}
 .js .plate:not(.in) :is(.w-beyond,.w-section,.w-target,.w-review){opacity:0}
-.js .plate.in :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text){opacity:1;transition:opacity 1.2s var(--draw) calc(var(--d,0s) + .8s)}
-.js .plate.in .face.w-edge{transition:stroke-dashoffset var(--draw-t) var(--draw) var(--d,0s)}
+.js .plate.in :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text){opacity:1;transition:opacity .8s var(--draw) calc(var(--d,0s) * var(--pace) + .5s)}
+.js .plate.in .face.w-edge{transition:stroke-dashoffset var(--draw-t) var(--draw) calc(var(--d,0s) * var(--pace))}
 @media (prefers-reduced-motion:reduce){
   .js .plate [pathLength],.js .plate:not(.in) [pathLength]{stroke-dasharray:none;stroke-dashoffset:0;transition:none}
   .js .plate :is(.poche,.hatch-fill,.hatch-light,.ann,.mark-fill,text,.w-beyond,.w-section,.w-target,.w-review){opacity:1!important;transition:none}
@@ -144,11 +143,14 @@ h1,h2,h3,.lede,.pull,.figures strong{font-family:var(--font-display);font-weight
 
 .close{text-align:center;padding:clamp(96px,18vh,200px) 16px;border-top:1px solid var(--rule)}
 .close-mark svg{width:44px;height:auto;color:var(--ink)}
+/* the home page ends on its opening line, set large: the page closes the way it began */
+.close .close-home{margin:28px auto 40px;font-size:clamp(36px,5.2vw,80px);line-height:1.08;max-width:16ch}
+:lang(ar) .close .close-home{line-height:1.35}
 .early{max-width:var(--measure-text);margin:48px auto 0}
 
 /* State: colour only with a mark and a word */
-.state{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-s);font-weight:600}
-.state::before{content:"";width:14px;height:14px;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.state{display:inline-flex;align-items:baseline;gap:6px;font-size:var(--t-s);font-weight:600}
+.state::before{content:"";align-self:center;width:14px;height:14px;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
 .state.pass{color:var(--good);--m:var(--mark-pass)}
 .state.fail{color:var(--fault);--m:var(--mark-fail)}
 .state.pending{color:var(--caution);--m:var(--mark-caution)}
@@ -177,16 +179,9 @@ tbody tr:last-child>*{border-bottom:0}
 .tasks li,.sitemap li{padding:8px 0;border-bottom:1px solid var(--rule)}
 .results{max-width:900px}
 
-/* The title block: bottom of every sheet, aligned to the inline end like a drawing's */
-.title-block{margin:clamp(64px,12vh,120px) 0 0;display:flex;justify-content:flex-end}
-.title-block dl{display:grid;grid-template-columns:auto 1fr auto auto;margin:0;border:1px solid var(--rule);font-size:.75rem;min-width:min(100%,560px)}
-.title-block dl>div{padding:8px 12px;border-inline-start:1px solid var(--rule)}
-.title-block dl>div:first-child{border-inline-start:0}
-.title-block dt{color:var(--ink-3);letter-spacing:.06em;font-size:.6875rem}
-.title-block dd{margin:2px 0 0;color:var(--ink);font-weight:600}
-@media (max-width:600px){.title-block dl{grid-template-columns:1fr 1fr}.title-block dl>div:nth-child(3){border-inline-start:0}.title-block dl>div:nth-child(n+3){border-top:1px solid var(--rule)}}
-.home-tb{max-width:1360px;margin:0 auto;padding:0 calc(var(--gutter) + 6px) 40px}
-.home-tb .title-block{margin-top:0}
+/* The end of a sheet: its number and when it last changed, one quiet line under a hairline */
+.sheet-end{display:flex;justify-content:space-between;gap:16px;margin:clamp(64px,12vh,120px) 0 0;padding-top:14px;border-top:1px solid var(--rule);font-size:.75rem;color:var(--ink-3)}
+.sheet-end [data-label]{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.08em}
 
 /* Footer */
 .foot{border-top:1px solid var(--rule);padding:56px calc(var(--gutter) + 6px) 40px;color:var(--ink-2);font-size:var(--t-s)}
@@ -220,14 +215,15 @@ tbody tr:last-child>*{border-bottom:0}
 .page .plate{max-width:980px}
 
 /* ---------- Home: after the stage, the rhythm changes ---------- */
-.band{background:#0B0B0C;color:#F5F5F7;padding:clamp(96px,20vh,220px) calc(var(--gutter) + 6px);margin:0}
+.band{background:light-dark(#0B0B0C,#1C1C1E);color:#F5F5F7;padding:clamp(96px,20vh,220px) calc(var(--gutter) + 6px);margin:0}
 .band h2{font-size:clamp(48px,9vw,150px);line-height:.98;letter-spacing:-.025em;margin:0 0 32px;max-width:14ch}
 :lang(ar) .band h2{line-height:1.25;letter-spacing:0}
 .band p{max-width:36rem;color:#D1D1D6;font-size:clamp(17px,1.4vw,21px);margin:0}
-.detail{display:grid;gap:32px;align-items:end;padding:clamp(80px,14vh,160px) 0 clamp(80px,14vh,160px) calc(var(--gutter) + 6px);overflow:hidden}
-@media (min-width:960px){.detail{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}.detail-text{padding-inline-end:calc(var(--gutter) + 6px)}}
-.detail-plate{margin:0;margin-inline-start:-6vw}
-.detail-plate .plate-svg{max-height:none}
+.detail{display:grid;gap:32px clamp(40px,6vw,112px);align-items:center;padding:clamp(80px,14vh,160px) calc(var(--gutter) + 6px);max-width:1360px;margin:0 auto;border-top:1px solid var(--rule)}
+@media (min-width:960px){.detail{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}}
+/* the detail sits in its own frame at a height the screen can hold, so the whole crenellation is seen at once */
+.detail-plate{margin:0;border:1px solid var(--rule);padding:clamp(20px,3vw,48px);display:grid;place-items:center}
+.detail-plate .plate-svg{max-height:min(68vh,600px);width:100%;overflow:hidden}
 .detail h2,.teaser h2{font-size:clamp(30px,3.4vw,48px);line-height:1.1;margin:0 0 14px}
 :lang(ar) :is(.detail,.teaser) h2{line-height:1.35}
 .detail p,.teaser p{color:var(--ink-2);max-width:28rem}
@@ -248,27 +244,13 @@ tbody tr:last-child>*{border-bottom:0}
 /* ---------- Paper: a faint generated tooth under every sheet ---------- */
 body{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ---------- The sheet index: a slim rail of sheet numbers ---------- */
-.rail{position:fixed;inset-inline-end:16px;top:50%;transform:translateY(-50%);z-index:9}
-.rail ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
-.rail a{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-height:24px;text-decoration:none;color:var(--ink-3);font-size:.6875rem;background:none}
-.rail .rail-no{font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;position:relative;padding-inline-end:14px}
-.rail .rail-no::after{content:"";position:absolute;inset-inline-end:0;top:50%;width:8px;height:1px;background:currentColor;transition:width .4s var(--draw)}
-.rail .rail-t{opacity:0;transform:translateX(6px);transition:opacity .3s,transform .3s var(--draw);white-space:nowrap;background:var(--table);padding:0 4px}
-.rail a:hover .rail-t,.rail a:focus-visible .rail-t{opacity:1;transform:none}
-.rail a[aria-current]{color:var(--ink)}
-.rail a[aria-current] .rail-no::after{width:12px;height:2px}
-@media (max-width:1359px){.rail{display:none}}
-body.home .rail{display:none}
-
 /* ---------- Turning to the next sheet: cross-document view transitions ---------- */
 @view-transition{navigation:auto}
 .page-head .sheet-no,.step-first .step-no{view-transition-name:sheetno}
-.title-block{view-transition-name:titleblock}
 .top{view-transition-name:top}
 ::view-transition-old(root){animation:sheet-out .28s ease-out both}
 ::view-transition-new(root){animation:sheet-in .32s ease-out both}
-::view-transition-group(sheetno),::view-transition-group(titleblock){animation-duration:.32s}
+::view-transition-group(sheetno){animation-duration:.32s}
 @keyframes sheet-out{to{opacity:0;transform:translateX(-1%)}}
 @keyframes sheet-in{from{opacity:0;transform:translateX(1%)}}
 [dir=rtl]::view-transition-old(root){animation-name:sheet-out-rtl}
@@ -326,6 +308,8 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 .step-no{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.75rem;letter-spacing:.12em;color:var(--ink-3)}
 .step-first h1{font-size:clamp(40px,5.4vw,92px);line-height:1;letter-spacing:-.02em;margin:6px 0 20px}
 :lang(ar) .step-first h1{line-height:1.25;letter-spacing:0}
+/* the English headline is set so each of its two lines holds on one line in the words column at desktop widths */
+@media (min-width:900px){:lang(en) .stage-wrap:not(.scene-wrap) .step-first h1{font-size:clamp(40px,3.7vw,64px)}}
 .step-first .l{display:block}
 .legend{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.8125rem;color:var(--ink-2)}
 .legend li{display:inline-flex;align-items:center;gap:8px}
@@ -340,7 +324,7 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 .stage-controls input[type=range]{accent-color:var(--ink);width:min(200px,40vw)}
 .stage-controls output{font-family:ui-monospace,Menlo,monospace}
 .stage-note{font-size:.6875rem;color:var(--ink-3);margin:0}
-@media (max-width:899px){.step h3{font-size:clamp(24px,6.4vw,34px)}.step-first h1{font-size:clamp(34px,9vw,56px)}.step p{font-size:.9375rem}.stage-words{justify-content:flex-start}}
+@media (max-width:899px){.step h3{font-size:clamp(24px,6.4vw,34px)}.step-first h1{font-size:clamp(40px,11vw,60px)}.step p{font-size:.9375rem}.stage-words{justify-content:flex-start}}
 @media (max-height:700px) and (max-width:899px){.step-first .hero-sub{display:none}}
 /* No script or reduced motion: the stages as a plain sequence of finished plates, drawing then words */
 .stage-wrap:not(.is-live){height:auto}
@@ -365,7 +349,6 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 .changelog{list-style:none;padding:0;margin:32px 0 0;max-width:var(--measure-text)}
 .changelog li{padding:16px 0;border-top:1px solid var(--rule)}
 .changelog p{margin:6px 0 0;color:var(--ink-2)}
-@media (max-width:1559px){.rail{display:none}}
 
 /* Words and drawing are one unit: the opacity of the one visible step is set from the drawing's own clock
    (assets/words.js). No timed animation here: a timed fade would run on its own and lag the picture. */
@@ -403,8 +386,9 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 .chain-bare{height:8px}
 @media (max-width:899px){
   .scene{grid-template-rows:minmax(0,44fr) minmax(0,56fr)}
-  .scene .step h2{font-size:clamp(24px,6.4vw,34px)}.scene .step-first h1{font-size:clamp(32px,8.6vw,48px)}
-  .scene .step-first .lede{font-size:1.0625rem;line-height:1.5}:lang(ar) .scene .step-first .lede{line-height:1.7}
+  .scene .step h2{font-size:clamp(24px,6.4vw,34px)}.scene .step-first h1{font-size:clamp(38px,10.5vw,56px)}
+  /* Markazi's small x-height reads a size smaller than the text face: the lede is set up a step to match */
+  .scene .step-first .lede{font-size:1.25rem;line-height:1.45}:lang(ar) .scene .step-first .lede{font-size:1.3125rem;line-height:1.6}
 }
 /* without the script (or with reduced motion): the finished plate, then the chapters, in the page's column */
 .scene-wrap:not(.is-live) .stage{max-width:1200px;margin:0 auto;padding:clamp(56px,12vh,128px) calc(var(--gutter) + 6px) 0}
@@ -429,6 +413,20 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 .page-body .results{max-width:none}
 .page-body .results>section,.page-body .results>.fold{border-top:1px solid var(--rule);padding-top:clamp(28px,5vh,48px);margin-top:clamp(28px,5vh,48px)}
 .page-body .results .fold{padding-top:0}
+/* A plain page on a wide screen is one sheet of two columns, as a scene page's body is: the title and the section
+   headings on the start side, the text in the column beside them. Text with no section of its own (a short page,
+   the lines before the first section, a list built from data) sits in that same text column, so every line of
+   every page starts on one of two edges. */
+.page-plain{max-width:1360px}
+.page-plain .page-head{max-width:none}
+@media (min-width:900px){
+  .page-plain{--col:calc((100% - 48px) / 3 + 48px)}
+  .page-plain>:is(.prose:not(.sectioned),.results,.story,.plate,.pull),.page-plain .sec-lead{margin-inline-start:var(--col)}
+  .page-plain>.prose.sectioned{margin-top:clamp(48px,9vh,96px)}
+  .page-plain>.prose:not(.sectioned){margin-top:clamp(40px,7vh,72px)}
+  .page-plain .sec-lead{max-width:var(--measure-text);margin-bottom:clamp(32px,6vh,56px)}
+  .page-plain .page-close{margin-inline-start:0}
+}
 /* The ending: one line, one way on. */
 .page-close{border-top:1px solid var(--ink);margin-top:clamp(64px,12vh,128px);padding-top:clamp(32px,6vh,56px)}
 .close-line{font-family:var(--font-display);font-weight:500;font-size:clamp(30px,4vw,60px);line-height:1.1;max-width:20ch;margin:0 0 28px;text-wrap:balance}
@@ -511,6 +509,14 @@ text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.an
 .apart-item p{margin:0;color:var(--ink-2);font-size:.9375rem;line-height:1.65;max-width:30rem}
 .apart-item .num,.apart-item [data-src]{color:var(--ink);font-weight:600}
 .apart-note{margin:clamp(32px,6vh,56px) 0 0;font-size:.75rem;color:var(--ink-3)}
+/* only the home page's full-width set; inside a page's text column the list keeps two columns, which ten fill evenly */
+@media (min-width:1100px){
+  #main>.apart .apart-list{grid-template-columns:repeat(3,minmax(0,1fr))}
+  #main>.apart .apart-item:last-child{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);grid-template-rows:auto auto 1fr;column-gap:clamp(24px,4vw,64px);align-items:start}
+  #main>.apart .apart-item:last-child>:not(.apart-plate){grid-column:1}
+  #main>.apart .apart-item:last-child .apart-plate .plate-svg{height:clamp(200px,22vw,300px)}
+  #main>.apart .apart-item:last-child .apart-plate{grid-column:2;grid-row:1/span 3;aspect-ratio:auto;height:clamp(200px,22vw,300px);margin:0}
+}
 
 /* ---------- Forms: the investors' contact form and the launch list. Hairlines, one ink button, nothing else. ---------- */
 .form{max-width:var(--measure-text);margin:28px 0 0}
@@ -521,7 +527,13 @@ text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.an
 .field :is(input:not([type=checkbox]),textarea,select){font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--field-edge);border-radius:var(--r-s);padding:10px 12px;min-height:var(--h-touch);width:100%}
 .field textarea{resize:vertical;line-height:1.6}
 .field.check{grid-template-columns:auto 1fr;align-items:start;gap:12px}
-.field.check input{width:20px;height:20px;margin:2px 0 0;accent-color:var(--ink)}
+/* The consent box: a 22 px square drawn inside a 44 px target (a transparent border holds the margin), so a thumb
+   finds it without the box looking large. Ticked, it fills with ink and keeps a ring of paper inside: a mark, no colour. */
+.field.check input{appearance:none;-webkit-appearance:none;flex:none;width:44px;height:44px;margin:-11px;margin-inline-end:-1px;
+  border:11px solid transparent;border-radius:0;background:var(--surface) padding-box;box-shadow:inset 0 0 0 1.5px var(--ink);cursor:pointer}
+.field.check input:checked{background:var(--ink) padding-box;box-shadow:inset 0 0 0 1.5px var(--ink),inset 0 0 0 5px var(--surface)}
+.field.check input:focus-visible{outline:2px solid var(--ink);outline-offset:-9px}
+.form fieldset:disabled .field.check input{cursor:not-allowed}
 .field.check label{font-weight:400;line-height:1.6}
 .send{justify-self:start;font:inherit;font-weight:600;color:var(--on-ink);background:var(--ink);border:0;border-radius:var(--r-s);min-height:var(--h-touch);padding:0 22px;cursor:pointer}
 .form fieldset:disabled .send{cursor:not-allowed}
@@ -532,7 +544,7 @@ text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.an
 /* Arabic letters join: any letter-spacing breaks the joining in Safari and can scramble the order of a label drawn in
    SVG (the owner saw «سطح الأرض» as loose reversed letters on an iPhone). Arabic text is never tracked, and SVG
    labels take their direction from their own words. Latin marks that are tracked by design keep it. */
-:lang(ar) :is(.ann,.ann-region-en,thead th,.title-block dt,.foot h2,.rsrc strong,.rsrc-h,p,li,td,span,b,strong,h1,h2,h3,h4,label,button,a){letter-spacing:0}
+:lang(ar) :is(.ann,.ann-region-en,thead th,.foot h2,.rsrc strong,.rsrc-h,p,li,td,span,b,strong,h1,h2,h3,h4,label,button,a){letter-spacing:0}
 :lang(ar) svg text{unicode-bidi:plaintext;letter-spacing:0}
 
 /* ---------- Phone (under 900 px): short scroll per scene, the drawing large and above the words, readable type,
@@ -542,24 +554,25 @@ text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.an
   .menu:not([open]) ul{display:none}
   .menu summary{min-width:var(--h-touch);justify-content:center;padding-inline:10px;font-size:1rem}
   .menu[open] ul{max-height:calc(100svh - 80px);overflow-y:auto}
-  .menu[open] a{font-size:1.0625rem;width:100%}
+  /* the open menu is a short index set in the display face, large enough to be the whole screen's subject */
+  .menu[open] ul{padding-block:12px 28px;box-shadow:0 24px 48px -32px rgb(0 0 0 / .25)}
+  .menu[open] a{font-family:var(--font-display);font-weight:500;font-size:1.75rem;line-height:1.3;color:var(--ink);width:100%;min-height:56px}
   /* the stage: about two thirds of a screen of scroll per stage instead of a screen and a half */
   .stage-wrap.is-live{height:calc(100svh + 8 * 62svh)}
-  .stage{padding:64px calc(var(--gutter) + 6px) 20px;grid-template-rows:minmax(0,60fr) minmax(0,40fr)}
+  .stage{padding:64px calc(var(--gutter) + 6px) 20px;grid-template-rows:minmax(0,55fr) minmax(0,45fr)}
   .scene-wrap.is-live{height:calc(100svh + (var(--stages) - .5) * 60svh)}
   .step p{font-size:1rem}
   .step .quiet,.stage-note,.apart-note,.legend,.stage-controls{font-size:.875rem}
-  .title-block :is(dt,dd),thead th,.plate figcaption,.rsrc-h{font-size:.875rem}
+  thead th,.plate figcaption,.rsrc-h{font-size:.875rem}
   .fold:not([open])>:not(summary){display:none}
   .scene .step-first .lede{max-width:none}
   /* a scene plate shrinks to the phone's width: its labels are set larger so they still read at about 10 px or more */
   .scene-plate .ann{font-size:calc(13.5px * var(--type))}
   .chain li{font-size:.875rem}
   :lang(en) .chain li{font-size:.625rem}
-  .field.check{display:flex;align-items:center;gap:10px;min-height:var(--h-touch)}
-  .field.check input{width:24px;height:24px;flex:none;margin:0}
+  /* the small drawings of the canvas shrink to the phone's column: their lettering is set up so it reads at 10 px or more */
+  .apart-plate text:is(.fixed,.fixed-s,.ann-key.fixed){font-size:15px}
+  .sheet-end{font-size:.875rem}
+  .field.check{display:flex;align-items:center;gap:0;min-height:var(--h-touch)}
   .field.check label{padding-block:10px}
-  /* the detail plate bleeds off the edge on wide screens; on a phone it fits the width so no label is cut */
-  .detail{padding-inline-end:calc(var(--gutter) + 6px)}
-  .detail-plate{margin-inline-start:0}
-}
+ }
