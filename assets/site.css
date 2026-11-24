@@ -381,7 +381,7 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 @media (min-width:900px){.stage-words{justify-content:space-between}.stage-words .steps{margin-block:auto}}
 @media (max-width:899px){.stage-words{justify-content:space-between}.chain li{font-size:.625rem}}
 /* on a phone the stage names would run into each other: only the current one is named, the others stay as ticks */
-@media (max-width:599px){.chain li:not([data-now]){font-size:0}}
+@media (max-width:599px){.stage-wrap .chain li:not([data-now]){font-size:0}}
 
 /* ---------- Scenes: an inner page opens like the home stage (assets/scene.js; MOTION.md rule 6) ---------- */
 .page-scene{max-width:none;padding:0}
