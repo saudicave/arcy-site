@@ -380,6 +380,8 @@ ul.rsrc .el{display:inline-block;min-width:5.5em;font-weight:600;color:var(--ink
 .stage-wrap:not(.is-live) .chain{display:none}
 @media (min-width:900px){.stage-words{justify-content:space-between}.stage-words .steps{margin-block:auto}}
 @media (max-width:899px){.stage-words{justify-content:space-between}.chain li{font-size:.625rem}}
+/* on a phone the stage names would run into each other: only the current one is named, the others stay as ticks */
+@media (max-width:599px){.chain li:not([data-now]){font-size:0}}
 
 /* ---------- Scenes: an inner page opens like the home stage (assets/scene.js; MOTION.md rule 6) ---------- */
 .page-scene{max-width:none;padding:0}
@@ -532,3 +534,32 @@ text.fixed{font-size:11px}text.fixed-s{font-size:9.5px;fill:var(--ink-2)}text.an
    labels take their direction from their own words. Latin marks that are tracked by design keep it. */
 :lang(ar) :is(.ann,.ann-region-en,thead th,.title-block dt,.foot h2,.rsrc strong,.rsrc-h,p,li,td,span,b,strong,h1,h2,h3,h4,label,button,a){letter-spacing:0}
 :lang(ar) svg text{unicode-bidi:plaintext;letter-spacing:0}
+
+/* ---------- Phone (under 900 px): short scroll per scene, the drawing large and above the words, readable type,
+   44 px targets. Measured at 390x844 with touch (scripts/audit.mjs). ---------- */
+@media (max-width:899px){
+  /* the closed menu is not rendered at all, so nothing of it can sit over the page */
+  .menu:not([open]) ul{display:none}
+  .menu summary{min-width:var(--h-touch);justify-content:center;padding-inline:10px;font-size:1rem}
+  .menu[open] ul{max-height:calc(100svh - 80px);overflow-y:auto}
+  .menu[open] a{font-size:1.0625rem;width:100%}
+  /* the stage: about two thirds of a screen of scroll per stage instead of a screen and a half */
+  .stage-wrap.is-live{height:calc(100svh + 8 * 62svh)}
+  .stage{padding:64px calc(var(--gutter) + 6px) 20px;grid-template-rows:minmax(0,60fr) minmax(0,40fr)}
+  .scene-wrap.is-live{height:calc(100svh + (var(--stages) - .5) * 60svh)}
+  .step p{font-size:1rem}
+  .step .quiet,.stage-note,.apart-note,.legend,.stage-controls{font-size:.875rem}
+  .title-block :is(dt,dd),thead th,.plate figcaption,.rsrc-h{font-size:.875rem}
+  .fold:not([open])>:not(summary){display:none}
+  .scene .step-first .lede{max-width:none}
+  /* a scene plate shrinks to the phone's width: its labels are set larger so they still read at about 10 px or more */
+  .scene-plate .ann{font-size:calc(13.5px * var(--type))}
+  .chain li{font-size:.875rem}
+  :lang(en) .chain li{font-size:.625rem}
+  .field.check{display:flex;align-items:center;gap:10px;min-height:var(--h-touch)}
+  .field.check input{width:24px;height:24px;flex:none;margin:0}
+  .field.check label{padding-block:10px}
+  /* the detail plate bleeds off the edge on wide screens; on a phone it fits the width so no label is cut */
+  .detail{padding-inline-end:calc(var(--gutter) + 6px)}
+  .detail-plate{margin-inline-start:0}
+}

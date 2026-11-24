@@ -1,12 +1,12 @@
 {
   "_about": "Release notes from real, dated changes in the product repository ARCY-Official (commit hash and date as in its git log). Only changes a person using ARCY would notice are listed. Copied by hand; add new entries from the product's log, never from memory.",
   "entries": [
-    {"date": "2026-11-24", "commit": "089ab92", "ar": "سؤال عن دليل بجانب تقييم فارغ يُعامل سؤالاً، واسم معيار غير معروف يُجاب بالمعرّفات القريبة منه.", "en": "A guideline question sent beside an empty assessment is treated as the question, and an unknown parameter name is answered with the ids it may mean."},
-    {"date": "2026-11-24", "commit": "12286da", "ar": "رقم أُرسل فارغاً من رسم قطعة يُعدّ رقماً لم يُقرأ، لا رقماً خاطئاً.", "en": "A figure sent empty from a plot sketch counts as not read, not as invalid."},
-    {"date": "2026-11-24", "commit": "19cb481", "ar": "عرض أرض كتبه الشخص بلا رابط يُحفظ كما قاله.", "en": "A property a person typed with no link is kept as they said it."},
-    {"date": "2026-11-24", "commit": "a90e89c", "ar": "رابط إلى مسار داخلي في الإجابة يصير اسم الملف.", "en": "A link to an internal path in an answer becomes the file's name."},
-    {"date": "2026-11-24", "commit": "096dbb5", "ar": "عدة قطع تقود إلى الدليل العمراني، والدليل العمراني يربط نموذج الموقع.", "en": "Several plots lead to the urban guide, and the urban guide links the site model."},
-    {"date": "2026-11-24", "commit": "745c2af", "ar": "مجموعة رسومات كما يطبعها مكتب استشاري: تسميات واضحة، أثاث برموز، اللوحة المناسبة، وأسطر عربية مرتّبة.", "en": "A drawing set as a consultancy would plot it: clear labels, furniture as symbols, the sheet that fits, Arabic lines in order."},
-    {"date": "2026-11-23", "commit": "c745c67", "ar": "إصلاح خمسة فحوص متصفح فاشلة في مساحة العمل من سببها.", "en": "Five failing browser checks of the workspace fixed at their cause."}
+    {"date": "2026-11-24", "commit": "089ab92", "ar": "إذا وصل سؤال عن دليل ومعه تقييم فارغ، عومل على أنه سؤال؛ وإذا ورد اسم معامل غير معروف، اقترح الوكيل المعرّفات الأقرب إليه.", "en": "A guideline question sent beside an empty assessment is treated as the question, and an unknown parameter name is answered with the ids it may mean."},
+    {"date": "2026-11-24", "commit": "12286da", "ar": "الرقم الذي يصل فارغاً من كروكي القطعة صار يُعدّ رقماً لم يُقرأ، لا رقماً خاطئاً.", "en": "A figure sent empty from a plot sketch counts as not read, not as invalid."},
+    {"date": "2026-11-24", "commit": "19cb481", "ar": "عرض الأرض الذي يكتبه صاحبه دون رابط يُحفظ كما كتبه.", "en": "A property a person typed with no link is kept as they said it."},
+    {"date": "2026-11-24", "commit": "a90e89c", "ar": "إذا تضمنت الإجابة رابطاً إلى مسار داخلي، ظهر مكانه اسم الملف.", "en": "A link to an internal path in an answer becomes the file's name."},
+    {"date": "2026-11-24", "commit": "096dbb5", "ar": "الطلب الذي يضم عدة قطع يقود إلى الدليل العمراني، والدليل العمراني يربطها بنموذج الموقع.", "en": "Several plots lead to the urban guide, and the urban guide links the site model."},
+    {"date": "2026-11-24", "commit": "745c2af", "ar": "طقم رسومات كما يطبعه مكتب استشاري: تسميات واضحة، وأثاث بالرموز، ومقاس لوحة مناسب، ونصوص عربية في ترتيبها الصحيح.", "en": "A drawing set as a consultancy would plot it: clear labels, furniture as symbols, the sheet that fits, Arabic lines in order."},
+    {"date": "2026-11-23", "commit": "c745c67", "ar": "عالجنا من الجذر خمسة فحوص متصفح كانت تفشل في مساحة العمل.", "en": "Five failing browser checks of the workspace fixed at their cause."}
   ]
 }

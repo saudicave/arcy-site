@@ -789,6 +789,7 @@ function frame() {
     render(ctx, W, H, inner(P));
     if (P >= 2 && P < 3) drawWorking(ctx, W, H, P - 2);
     renderMs.push(performance.now() - t0); if (renderMs.length > 4000) renderMs.shift();
+    if (phone && renderMs.length === 40) { const m = [...renderMs].sort((x, y) => x - y)[20]; if (m > 16) { settle(); return; } }
     // Words and drawing are one unit: the words are computed from the p that was just drawn (words.js), so they
     // enter with the drawing's change, hold while it rests, and leave as the next drawing starts.
     words(P);
@@ -813,7 +814,12 @@ function staticSequence() {
 }
 
 readColours();
-if (reduce) staticSequence();
+// A phone that saves data or has few cores gets the finished plates at rest instead of the scrubbed drawing; a phone
+// whose frames turn out slow (median over 16 ms in the first 40) switches to them too (see frame()).
+const phone = matchMedia('(max-width: 899px)').matches;
+const lite = phone && (navigator.connection?.saveData || (navigator.hardwareConcurrency || 8) <= 2 || (navigator.deviceMemory || 8) <= 2);
+function settle() { running = false; wrap.classList.remove('is-live'); staticSequence(); }
+if (reduce || lite) staticSequence();
 else {
   wrap.classList.add('is-live');
   size(); readScroll(); state.p = state.target;

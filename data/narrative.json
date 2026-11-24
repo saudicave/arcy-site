@@ -5,38 +5,38 @@
     {
       "date": "2026-11-23",
       "after": "stage2-baseline-2026-11-23",
-      "ar": "حكم المالك على المخرجات بعد أن رآها كلها: لا شيء فوق 1 من 4، على مقياس تعني فيه 3 ما يعرضه مكتب استشاري كبير على عميله. نجاح المهمة في هذا الاختبار يعني أن القدرة استُعملت صحيحاً، لا أن المخرج جيد.",
+      "ar": "اطّلع المالك على المخرجات كلها، فلم يمنح أياً منها أكثر من 1 من 4، على مقياس تعني فيه الدرجة 3 ما يعرضه مكتب استشاري كبير على عميله. ونجاح المهمة في هذا الاختبار يعني أن الوكيل استعمل القدرة استعمالاً صحيحاً، لا أن المخرج جيد.",
       "en": "The owner's verdict after looking at every output: none above 1 of 4, on a scale where 3 is what a large consultancy would show a client. A pass in this suite says a capability was used correctly, not that its output is good."
     }
   ],
   "causes": [
     {
       "task": "11",
-      "ar": "أرسل النموذج معاملاً فارغاً بجانب سؤال بسيط، فأجابت كل عمليات البحث الـ31 بأن المعامل غير موجود.",
+      "ar": "أرسل النموذج معاملاً فارغاً مع سؤال بسيط، فجاء رد عمليات البحث الـ31 كلها بأن المعامل غير موجود.",
       "en": "The model sent an empty parameter beside a plain question; all 31 lookups answered that the parameter was not found.",
       "fix": "089ab92"
     },
     {
       "task": "c70",
-      "ar": "أرقام لا يُظهرها الرسم جاءت نصوصاً فارغة وأصفاراً فرُفضت.",
+      "ar": "أرقام لا يظهرها الكروكي وصلت نصوصاً فارغة وأصفاراً، فرفضها النظام.",
       "en": "Figures the sketch does not show came as empty texts and zeros and were refused.",
       "fix": "12286da"
     },
     {
       "task": "c72",
-      "ar": "رُفض عرض أرض لا عنوان له.",
+      "ar": "رفض النظام عرض أرض ليس له عنوان.",
       "en": "A listing with no address was refused.",
       "fix": "19cb481"
     },
     {
       "task": "c40",
-      "ar": "قُرئ دليل القطعة الواحدة ولم يُصنع نموذج الموقع.",
+      "ar": "قرأ الوكيل دليل القطعة الواحدة، لكنه لم يبنِ نموذج الموقع.",
       "en": "The one-plot guide was read and the site model never made.",
       "fix": "096dbb5"
     }
   ],
   "limits": {
-    "ar": "تشغيل واحد لكل مهمة، وعدد صغير: أربع مهام بعد الإصلاح تقول اتجاهاً لا أكثر (اختبار McNemar: p = 0.25). الأزمنة قيست على جهاز مشغول فهي حدود عليا. لم يُقس البحث والذاكرة وسجلات المشاريع وغيرها. مهمة c40 ما زالت تفشل.",
+    "ar": "شغّلنا كل مهمة مرة واحدة، والعدد صغير: أربع مهام بعد الإصلاح تدل على اتجاه لا أكثر (اختبار McNemar: p = 0.25). وقسنا الأزمنة على جهاز مشغول، فهي حدود عليا. ولم نقس البحث والذاكرة وسجلات المشاريع وغيرها بعد. وما زالت المهمة c40 تفشل.",
     "en": "One run per task and a small number: four tasks after the fixes say a direction and no more (McNemar p = 0.25). Times were taken on a loaded machine and are upper bounds. Research, memory, project records and others were not measured. Task c40 still fails."
   },
   "verdict_score": 1,
